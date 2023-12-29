@@ -19,33 +19,24 @@ function setup() {
       height: 850,
     };
 
-    const imageAspectRatio = image.width / image.height;
-    const canvasAspectRatio = canvas.width / canvas.height;
+    const middleOfImportantArea = {
+      x: importantAreaInImage.x + importantAreaInImage.width / 2,
+      y: importantAreaInImage.y + importantAreaInImage.height / 2,
+    };
 
-    let displayWidth = importantAreaInImage.width;
-    let displayHeight = importantAreaInImage.height;
-
-    if (imageAspectRatio > canvasAspectRatio) {
-      displayHeight = importantAreaInImage.height * (canvas.width / importantAreaInImage.width);
-      displayWidth = canvas.width;
-    } else {
-      displayWidth = importantAreaInImage.width * (canvas.height / importantAreaInImage.height);
-      displayHeight = canvas.height;
+    const centerOfCanvas = {
+      x: canvas.width / 2,
+      y: canvas.height / 2,
     }
 
-    const sourceX = importantAreaInImage.x + (importantAreaInImage.width - displayWidth) / 2;
-    const sourceY = importantAreaInImage.y + (importantAreaInImage.height - displayHeight) / 2;
+    const sourceImageStart = 
 
     ctx.drawImage(
       image,
-      sourceX,
-      sourceY,
-      displayWidth,
-      displayHeight,
       0,
       0,
-      canvas.width,
-      canvas.height
+      image.width,
+      image.height
     );
   };
 }

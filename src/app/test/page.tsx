@@ -5,37 +5,19 @@ import React from 'react';
 export default function YourComponent() {
   const [hover, setHover] = React.useState(false);
   return (
-    <div className=" relative image-container h-screen w-screen ">
+    <div className=" relative w-full ">
       <img
         src="/map.jpg"
         alt="Your Image"
-        className="responsive-image"
-        useMap="#treesMap"
+        className=" block w-full h-auto"
       />
-        <svg
-          className=" absolute top-[13vh] left-[8vw] "
-          viewBox="73.03323417355115 124.79781684679715 76.42508449117535 137.56515208411565"
-          width="12vh"
-          height="12vh"
-        >
-          <polygon
-            points="73.03323417355115,262.3629689309128 149.4583186647265,260.66463371999777 149.4583186647265,232.64210273990017 148.60915105926898,216.50791823620756 131.62579895011893,217.35708584166508 132.47496655557643,186.78705204519494 111.24577641913882,186.78705204519494 111.24577641913882,125.64698445225466 73.03323417355115,124.79781684679715 "
-          // Define points for the polygon
-          // Handle other interactions or props as needed
-          ></polygon>
-        </svg>
-      {/* <map name="treesMap">
-        <div className=' bg-green-300'>
-          <area
-            shape="poly"
-            className={` cursor-pointer ${hover ? 'bg-blue-500' : ''} `}
-            coords="140,121,181,116,204,160,204,222,191,270,140,329,85,355,58,352,37,322,40,259,103,161,128,147"
-            onClick={(e) => console.log("area tag clicked", e)}
-            onMouseMove={(e) => { console.log("hover"); setHover(true); }}
-
-          />
-        </div>
-      </map> */}
+      <svg
+        className=' absolute top-[25%] left-[-3%] w-[32%] h-[30%]'
+        viewBox="317.5178859212668 16.91257950384904 237.76692952810103 450.0588308924771"
+      >
+        <polygon className=' opacity-0 hover:opacity-50 transition-opacity duration-300 w-full h-full' points="319.2162211321818,18.61091471476405 317.5178859212668,466.9714103963261 317.5178859212668,466.9714103963261 341.2945788740769,465.27307518541113 341.2945788740769,449.98805828717605 512.8264351764926,449.98805828717605 516.2231055983227,460.1780695526661 543.3964689729628,461.8764047635811 548.4914746057079,448.28972307626105 555.2848154493678,446.591387865346 555.2848154493678,353.1829512650205 483.9547365909375,354.88128647593567 483.9547365909375,309.0262357812303 500.93808870008763,305.6295653594004 497.5414182782576,215.61779918090497 427.9096746307423,219.01446960273498 429.60800984165735,16.91257950384904 320.9145563430967,20.307237428287234 "
+        ></polygon>
+      </svg>
     </div>
   );
 }

@@ -9,10 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'accent-gradient': 'linear-gradient(#FF9209, #FF6C22)',
       },
+      colors: {
+        primary: {
+          DEFAULT: '#FF9209',
+          dark: '#FF6C22',
+        },
+        secondary: {
+          DEFAULT: '#FF6C22',
+          dark: '#FF9209',
+        },
+        default: {
+          DEFAULT: '#333333',
+          dark: '#000000',
+        },
+      }
     },
   },
   plugins: [],
