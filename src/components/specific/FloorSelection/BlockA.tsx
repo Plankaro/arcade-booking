@@ -79,7 +79,6 @@ const ResidentialFloorSelection = () => {
     });
   }
   const imageRef = React.useRef<HTMLImageElement>(null);
-  console.log(imageRef.current?.width);
   const [imageNaturalAspectRatio, setImageNaturalAspectRatio] = React.useState<number>(0);
   useEffect(() => {
     if (imageRef.current) {
