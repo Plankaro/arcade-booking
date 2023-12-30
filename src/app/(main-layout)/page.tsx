@@ -1,13 +1,15 @@
-import Link from 'next/link'
+import HomeTypeSelectionCards from '@/components/specific/Home/HomeTypeSelectionCards'
+import MainBuildingOverlay from '@/components/specific/Home/MainBuildingOverlay'
+import BlockASelection from '@/components/specific/RoomSelection/BlockA'
 import React from 'react'
 
 const HomePage = () => {
   return (
-    <div>
-      hello world
-
-      <Link href={'arcade_commercial'} className='block'>arcade_commercial</Link>
-      <Link href={'arcade_residential'} className='block'>arcade_residential</Link>
+    <div className=' relative overflow-hidden h-screen w-screen bg-black flex items-center md:pt-20 pt-0'
+    >
+      <MainBuildingOverlay />
+      {/* <BlockASelection /> */}
+      <HomeTypeSelectionCards />
     </div>
   )
 }

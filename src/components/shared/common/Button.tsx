@@ -12,7 +12,7 @@ interface ButtonProps {
 }
 
 const Button = ({ onClick, type = "button", variant = 'primary', disabled = false, isLoading, children }: ButtonProps) => {
-  let buttonClasses = 'px-4 py-2 rounded-md focus:outline-none flex items-center justify-center gap-2';
+  let buttonClasses = 'px-[1.4dvh] py-[1dvh] rounded-[1.2dvh] focus:outline-none flex items-center justify-center gap-[1dvh] text-[3dvh]';
 
   // Apply different styles based on the variant prop
   switch (variant) {
@@ -42,7 +42,7 @@ const Button = ({ onClick, type = "button", variant = 'primary', disabled = fals
     >
       {isLoading ? (
         <motion.span
-          className='text-2xl'
+          className='text-[1.4dvh]'
           initial={{ rotate: 0 }} 
           animate={{ rotate: 360 }} 
           transition={{ duration: 0.5, repeat: Infinity, ease: 'linear' }} 

@@ -1,9 +1,7 @@
 "use client";
 import React from 'react';
-// import './YourComponent.css'; // Import your stylesheet
 
 export default function YourComponent() {
-  const [hover, setHover] = React.useState(false);
   return (
     <div className=" relative w-full ">
       <img
@@ -22,26 +20,3 @@ export default function YourComponent() {
   );
 }
 
-
-const SvgComponent = () => {
-  const handleHover = () => {
-    // Handle hover interaction
-  };
-
-  const handleLeave = () => {
-    // Handle leaving interaction
-  };
-
-  return (
-    <svg
-      className="imp-object-poly imp-object"
-      viewBox="73.03323417355115 124.79781684679715 76.42508449117535 137.56515208411565"
-    >
-      <polygon
-        points="73.03323417355115,262.3629689309128 149.4583186647265,260.66463371999777 149.4583186647265,232.64210273990017 148.60915105926898,216.50791823620756 131.62579895011893,217.35708584166508 132.47496655557643,186.78705204519494 111.24577641913882,186.78705204519494 111.24577641913882,125.64698445225466 73.03323417355115,124.79781684679715 "
-      // Define points for the polygon
-      // Handle other interactions or props as needed
-      ></polygon>
-    </svg>
-  );
-};
