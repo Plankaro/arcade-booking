@@ -1,6 +1,5 @@
 import HomeTypeSelectionCards from '@/components/specific/Home/HomeTypeSelectionCards'
 import MainBuildingOverlay from '@/components/specific/Home/MainBuildingOverlay'
-import RotateToLandscapeNotifier from '@/components/specific/Home/RotateToLandscapeNotifier'
 import React from 'react'
 
 const HomePage = () => {
