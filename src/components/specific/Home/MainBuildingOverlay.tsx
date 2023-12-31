@@ -11,7 +11,7 @@ const MainBuildingOverlay = () => {
     }
   }, [imageRef.current]);
   return (
-    <div className={`relative w-full`}
+    <div className={`relative w-full mt-[9vh]`}
       style={{
         maxWidth: `${imageRef.current?.width}px`,
       }}

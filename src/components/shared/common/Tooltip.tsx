@@ -1,12 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 
 export interface TooltipProps {
-  // x: number;
-  // y: number;
-  // visible?: boolean;
   rect: DOMRect | null;
   text: string;
-  side?: 'top' | 'bottom' | 'left' | 'right';
+  side?: 'top' | 'bottom';
 }
 
 // const Tooltip = ({ x, y, text, visible, side = 'bottom' }: TooltipProps) => {
@@ -63,15 +60,15 @@ const Tooltip = ({ rect, text, side = 'bottom' }: TooltipProps) => {
           className='fixed bg-primary text-black font-medium text-[2vh] capitalize text-center rounded-md border-4 border-primary'
           style={tooltipStyles}
         >
-          <span className='block py-2 px-4' style={{ width: 'fit-content' }}>
+          <span className='block py-[1vh] px-[2vh]' style={{ width: 'fit-content' }}>
             {text}
           </span>
           <div
             className={`border-transparent border-[${side}]-primary`}
             style={{
               position: 'absolute',
-              top: side === 'bottom' ? `-${18}px` : 'auto',
-              bottom: side === 'top' ? `-${20}px` : 'auto',
+              top: side === 'bottom' ? `-${2.3}vh` : 'auto',
+              bottom: side === 'top' ? `-${2.3}vh` : 'auto',
               left: '50%',
               width: 0,
               height: 0,
