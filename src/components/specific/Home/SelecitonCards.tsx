@@ -4,7 +4,7 @@ import React from 'react'
 
 const SelecitonCards = () => {
   return (
-    <div className='relative z-50 flex gap-[8dvh]'>
+    <div className='relative z-50 flex gap-[6dvh]'>
       <Link href={'block-a'} className='block'>
         <Card
           title='Commercial'

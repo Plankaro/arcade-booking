@@ -22,7 +22,7 @@ const HomeTypeSelectionCards = () => {
           initial={{ opacity: 0, translateY: '0%', translateX: '-50%' }}
           animate={{ opacity: 1, translateY: '-50%', translateX: '-50%' }}
           exit={{ opacity: 0, translateY: '-100%', translateX: '-50%' }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.4 }}
           className=' p-4 rounded-md fixed top-1/2 left-1/2 z-10'>
         <SelecitonCards />
         </motion.section >

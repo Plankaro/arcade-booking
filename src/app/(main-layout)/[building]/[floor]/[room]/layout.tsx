@@ -10,10 +10,10 @@ const RoomLayout = ({ children, booking }: {
   const isBooking = useSearchParams().has('booking');
 
   return (
-    <div>
+    <>
       {children}
       {isBooking && booking}
-    </div>
+    </>
   )
 }
 
