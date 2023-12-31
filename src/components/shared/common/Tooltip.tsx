@@ -1,39 +1,42 @@
 import { AnimatePresence, motion } from 'framer-motion';
 
 export interface TooltipProps {
-  x: number;
-  y: number;
+  // x: number;
+  // y: number;
+  // visible?: boolean;
+  rect: DOMRect | null;
   text: string;
-  visible?: boolean;
   side?: 'top' | 'bottom' | 'left' | 'right';
 }
 
-const Tooltip = ({ x, y, text, visible, side = 'bottom' }: TooltipProps) => {
+// const Tooltip = ({ x, y, text, visible, side = 'bottom' }: TooltipProps) => {
+const Tooltip = ({ rect, text, side = 'bottom' }: TooltipProps) => {
   const triangleSize = 8; // Adjust the triangle size as needed
   let tooltipStyles = {};
-
+  if (!rect) return null;
+  const { x, y, width, height } = rect;
   switch (side) {
     case 'top':
       tooltipStyles = {
-        position: 'absolute',
-        left: '50%',
-        top: `${y + triangleSize}px`,
+        position: 'fixed',
+        left: `${x + width / 2}px`,
+        top: `${y - 80}px`,
         transform: 'translateX(-50%)',
         zIndex: 9999,
       };
       break;
     case 'bottom':
       tooltipStyles = {
-        position: 'absolute',
-        left: '50%',
-        top: `${y + triangleSize}px`,
+        position: 'fixed',
+        left: `${x + width / 2}px`,
+        top: `${y + height + 10}px`,
         transform: 'translateX(-50%)',
         zIndex: 9999,
       };
       break;
     default:
       tooltipStyles = {
-        position: 'absolute',
+        position: 'fixed',
         left: '50%',
         top: `${y + triangleSize}px`,
         transform: 'translateX(-50%)',
@@ -44,14 +47,40 @@ const Tooltip = ({ x, y, text, visible, side = 'bottom' }: TooltipProps) => {
 
   return (
     <AnimatePresence>
-      {visible && (
+      {text && (
         <motion.div
+          key={text}
+          initial={{
+            opacity: 0,
+            translateY: side == 'bottom' ? 10 : side == 'top' ? -10 : 0,
+            translateX: '-50%',
+          }}
+          animate={{
+            opacity: 1,
+            translateY: 0,
+            translateX: '-50%',
+          }}
           className='fixed bg-primary text-black font-medium text-[2vh] capitalize text-center rounded-md border-4 border-primary'
           style={tooltipStyles}
         >
-           <span className='block py-2 px-4' style={{ width: 'fit-content' }}>
-              {text}
-            </span>
+          <span className='block py-2 px-4' style={{ width: 'fit-content' }}>
+            {text}
+          </span>
+          <div
+            className={`border-transparent border-[${side}]-primary`}
+            style={{
+              position: 'absolute',
+              top: side === 'bottom' ? `-${18}px` : 'auto',
+              bottom: side === 'top' ? `-${20}px` : 'auto',
+              left: '50%',
+              width: 0,
+              height: 0,
+              transform: 'translateX(-50%)',
+              border: `${triangleSize}px solid transparent`,
+              borderTopColor: side === 'top' ? '#FF9209' : 'transparent',
+              borderBottomColor: side === 'bottom' ? '#FF9209' : 'transparent',
+            }}
+          />
         </motion.div>
       )}
     </AnimatePresence>

@@ -34,30 +34,21 @@ const BlockBRoomSelection = ({ floor }: { floor: string }) => {
   ];
 
   const [tooltip, setTooltip] = React.useState<TooltipProps>({
-    x: 0,
-    y: 0,
     text: '',
-    visible: false,
+    rect: null,
   });
 
   const handlePathMouseEnter = (e: MouseEvent, text: string) => {
-    const { top, left, height, width } = e.currentTarget.getBoundingClientRect();
+    const rect = e.currentTarget.getBoundingClientRect();
 
     setTooltip({
-      x: left + width / 2,
-      y: top + 130,
       text: text,
-      visible: true
+      rect,
     })
   }
 
   const handlePathMouseLeave = () => {
-    setTooltip({
-      x: -100,
-      y: -100,
-      text: '',
-      visible: false
-    })
+    setTooltip({ rect: null, text: '' })
   }
 
   const imageRef = useRef<HTMLImageElement>(null);

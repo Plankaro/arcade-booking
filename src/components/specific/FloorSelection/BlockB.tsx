@@ -5,31 +5,18 @@ import React, { useEffect, useRef, useState } from 'react'
 
 const BlockBFloorSelection = () => {
   const pathClassName = 'opacity-0 hover:opacity-90 transition-opacity duration-300 cursor-pointer';
-  const [tooltip, setTooltip] = useState<TooltipProps>({
-    x: 0,
-    y: 0,
-    text: '',
-    visible: false,
-  });
+  const [tooltip, setTooltip] = React.useState<TooltipProps>({ text: '', rect: null, });
 
   const onMouseEnter = (e: React.MouseEvent, floor: string) => {
-    const { top, left, height, width } = e.currentTarget.getBoundingClientRect();
-    setTooltip({
-      x: left + width / 2,
-      y: top + 40,
-      text: floor,
-      visible: true,
-    });
-  };
-
+    const rect = e.currentTarget.getBoundingClientRect();
+    setTooltip({text: floor,rect,})
+  }
   const onMouseLeave = () => {
     setTooltip({
-      x: -100,
-      y: -100,
       text: '',
-      visible: false,
+      rect: null,
     });
-  };
+  }
 
   const imageRef = useRef<HTMLImageElement>(null);
   const [imageNaturalAspectRatio, setImageNaturalAspectRatio] = useState<number>(0);
