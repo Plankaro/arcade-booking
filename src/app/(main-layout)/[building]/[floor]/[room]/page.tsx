@@ -53,7 +53,7 @@ const BookingPage = ({ params: { building, floor, room } }: any) => {
       image: "/Images/Block-B/Block B-3 BHK (02).png"
     },
     {
-      id: "2-BHK-C",
+      id: "2-BHK-A",
       image: "/Images/Block-B/Block B-2 BHK (01).png"
     },
     {
@@ -61,7 +61,7 @@ const BookingPage = ({ params: { building, floor, room } }: any) => {
       image: "/Images/Block-B/Block B-2 BHK (02).png"
     },
     {
-      id: "2-BHK-A",
+      id: "2-BHK-C",
       image: "/Images/Block-B/Block B-2 BHK (03).png"
     },
     {
