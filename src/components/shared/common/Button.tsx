@@ -12,7 +12,7 @@ interface ButtonProps {
 }
 
 const Button = ({ onClick, type = "button", variant = 'primary', disabled = false, isLoading, children }: ButtonProps) => {
-  let buttonClasses = 'px-[1.4dvh] py-[1dvh] rounded-[1.2dvh] focus:outline-none flex items-center justify-center gap-[1dvh] text-[3dvh]';
+  let buttonClasses = 'px-[1.4dvh] py-[1dvh] rounded-[1.2dvh] focus:outline-none flex items-center justify-center gap-[1dvh] text-[2.4dvh]';
 
   // Apply different styles based on the variant prop
   switch (variant) {

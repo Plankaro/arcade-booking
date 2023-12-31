@@ -20,20 +20,23 @@ const BookingForm = ({ room_id }: BookingFormProps) => {
   return (
     <>
       <form onSubmit={handleSubmit(submitForm)}>
-        <div className=' flex flex-col gap-3'>
+        <div className=' flex flex-col gap-[1vh]'>
           <TextInput
+            required
             name="fullName"
             placeholder='Full name'
             register={register}
             error={errors.fullName?.message}
           />
           <TextInput
+            required
             name="phone"
             placeholder='Phone number'
             register={register}
             error={errors.phone?.message}
           />
           <TextInput
+            required
             name="email"
             placeholder='Email'
             register={register}

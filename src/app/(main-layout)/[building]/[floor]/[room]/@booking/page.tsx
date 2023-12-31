@@ -18,10 +18,10 @@ const BookingModal = ({ params: { building, floor, room } }: any) => {
           initial={{ opacity: 0, translateY: '0%', translateX: '-50%' }}
           animate={{ opacity: 1, translateY: '-50%', translateX: '-50%' }}
           exit={{ opacity: 0, translateY: '-100%', translateX: '-50%' }}
-          className=' p-4 bg-white rounded-md fixed top-1/2 left-1/2 z-10'>
-          <header className=' mb-4'>
-            <h2 className='text-2xl font-bold '>Book a room</h2>
-            <p className=' text-sm'>
+          className=' p-[2dvh] bg-white rounded-[2vh] fixed top-1/2 left-1/2 z-10'>
+          <header className=' mb-[2vh]'>
+            <h2 className='text-[4dvh] font-bold '>Book a room</h2>
+            <p className=' text-[2dvh]'>
               {building} / {floor} / {room}
             </p>
           </header>
