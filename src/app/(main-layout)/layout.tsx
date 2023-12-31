@@ -1,3 +1,4 @@
+import RotateToLandscapeNotifier from '@/components/specific/Home/RotateToLandscapeNotifier'
 import React from 'react'
 
 const layout = ({ children }: {
@@ -6,6 +7,7 @@ const layout = ({ children }: {
   return (
     <div className=' min-h-screen'>
       {children}
+      <RotateToLandscapeNotifier />
     </div>
   )
 }
