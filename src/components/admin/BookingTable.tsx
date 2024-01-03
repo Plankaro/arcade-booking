@@ -4,6 +4,9 @@ import {
   useMaterialReactTable,
   type MRT_ColumnDef,
 } from 'material-react-table';
+import { Button } from '@mui/material';
+import VerifiedIcon from "@mui/icons-material/Verified";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 //DataTable data type
 type Person = {
@@ -94,6 +97,34 @@ const DataTable = () => {
         header: 'State',
         size: 150,
       },
+      {
+        header: "Action",
+        accessorKey: "action",
+        Cell: ({ row }) => (
+  
+          <div className="flex items-center gap-3 justify-end">
+            <Button
+              variant="outlined"
+              color="success"
+              onClick={() => console.log(row.id)}
+              size="large"
+            >
+              {" "}
+              <VerifiedIcon />
+            </Button>
+  
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={() => console.log(row.id)}
+              size="large"
+            >
+              {" "}
+              <DeleteIcon />
+            </Button>
+          </div>
+        ),
+      }
     ],
     [],
   );
