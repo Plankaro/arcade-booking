@@ -11,9 +11,7 @@ const MainBody = () => {
         <DetailsCard title='Pending Approval' content='1000' />
         <DetailsCard title='24 Hour Booking' content='2303' />
       </div>
-      <div
-        className='w-full h-full overflow-hidden mt-3'> <DataTable /></div
-      >
+      <div className='w-full h-full overflow-hidden mt-3'> <DataTable /></div >
     </div>
   )
 }

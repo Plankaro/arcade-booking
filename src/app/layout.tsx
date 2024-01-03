@@ -25,11 +25,7 @@ export default function RootLayout({
         <ThemeRegistry>
           {" "}
           <AppProvider>
-            <div className="h-screen relative overflow-hidden">
-              <Header />
-              {children}
-              <Footer />
-            </div>
+            {children}
             <RotateToLandscapeNotifier />
           </AppProvider>
         </ThemeRegistry>

@@ -1,4 +1,4 @@
-import Loginform from "@/components/(Admin)/(auth)/Login-form";
+import Loginform from "@/components/admin/auth/Login-form";
 import React from "react";
 
 const page = () => {
