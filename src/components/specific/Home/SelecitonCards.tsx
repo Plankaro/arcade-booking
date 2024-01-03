@@ -1,4 +1,5 @@
 import Button from '@/components/shared/common/Button'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -36,9 +37,13 @@ const Card = (props: CardProps) => {
   return (
     <div className=' bg-white p-[2dvh] rounded-md'>
       <div className=' h-[60dvh] w-[40dvh] flex flex-col'>
-        <div className=' '>
-          <img className=' object-cover rounded-md' src={props.image} alt="" />
+        <div className=''>
+          {
+            props.image &&
+            <Image layout='responsive' height={400} width={400} className=' object-cover rounded-md' src={props.image} alt="" />
+          }
         </div>
+        {/* <img  className=' object-cover rounded-md' src={props.image} alt="" /> */}
         <h3 className=' text-[3dvh] font-bold mt-[1dvh]'>{props.title}</h3>
         <p className=' text-[2dvh] font-light'>{props.description}</p>
         <div className=' mt-auto w-full flex flex-col items-stretch'>

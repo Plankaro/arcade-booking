@@ -14,7 +14,7 @@ const BackButton = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={() => router.back()}
-      className=" fixed z-50 top-[5dvh] left-[5dvh] w-[8dvh] h-[8dvh] bg-[#F2F2F2] rounded-full flex justify-center items-center cursor-pointer"
+      className=" fixed z-50 top-[5dvh] left-[5dvh] w-[8dvh] h-[8dvh]  bg-[#F2F2F2] rounded-full flex justify-center items-center cursor-pointer"
     >
       <FaChevronLeft className="text-[#5F5F5F] text-[4dvh]" />
     </motion.button>

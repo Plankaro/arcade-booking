@@ -9,7 +9,7 @@ const AskForLandscape = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       exit={{ opacity: 0 }}
-      className=" fixed inset-0 bg-black/90 ">
+      className=" fixed inset-0 z-40 bg-black/90 ">
       <div className="w-full h-full flex flex-col items-center justify-center gap-4">
         <motion.div
           initial={{ rotate: 0 }}

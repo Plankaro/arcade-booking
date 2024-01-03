@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react'
 import AskForLandscape from './AskForLandscape';
 
 const RotateToLandscapeNotifier = () => {
-  const [isLandscape, setIsLandscape] = useState(
-    window.innerWidth > window.innerHeight
-  );
+  const [isLandscape, setIsLandscape] = useState(true);
 
   useEffect(() => {
     const handleOrientationChange = () => {
