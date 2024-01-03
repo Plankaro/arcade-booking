@@ -88,14 +88,10 @@ const data: Person[] = [
     state: "Nebraska",
   },
 ];
-interface ShowModel {
-  first: boolean;
-  second: boolean;
-  third: boolean;
-}
+
 
 interface TableProps {
-  handelModelClick: (value: any) => void;
+  handelModelClick?: (value: any) => void;
 }
 const DataTable: FC<TableProps> = ({ handelModelClick }) => {
   //should be memoized or stable
@@ -135,8 +131,7 @@ const DataTable: FC<TableProps> = ({ handelModelClick }) => {
               <Button
                 variant="outlined"
                 color="success"
-                onClick={() =>
-                  handelModelClick({ model: "Accept", value: row.id })
+                onClick={() =>   handelModelClick?.({ model: "Accept", value: row.id })
                 }
                 size="large"
               >
@@ -150,7 +145,7 @@ const DataTable: FC<TableProps> = ({ handelModelClick }) => {
                 variant="outlined"
                 color="error"
                 onClick={() =>
-                  handelModelClick({ model: "Reject", value: row.id })
+                  handelModelClick?.({ model: "Reject", value: row.id })
                 }
                 size="large"
               >
@@ -158,23 +153,23 @@ const DataTable: FC<TableProps> = ({ handelModelClick }) => {
                 <DeleteIcon />
               </Button>
             </Tooltip>
-          </div>
+          </div >
         ),
       },
     ],
-    []
+[]
   );
 
-  const table = useMaterialReactTable({
-    columns,
-    data,
-  });
+const table = useMaterialReactTable({
+  columns,
+  data,
+});
 
-  return (
-    <>
-      <MaterialReactTable table={table} />
-    </>
-  );
+return (
+  <>
+    <MaterialReactTable table={table} />
+  </>
+);
 };
 
 export default DataTable;
