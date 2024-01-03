@@ -10,6 +10,7 @@ const Header = () => {
                 width={50}
                 src={"/logo.png"}
                 alt='logo'
+                className='pl-3'
             />
         </div>
 
