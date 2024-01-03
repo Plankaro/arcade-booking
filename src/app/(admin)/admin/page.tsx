@@ -1,6 +1,4 @@
 import MainBody from "@/components/(Admin)/MainBody";
-import Navbar from "@/components/(Admin)/Navbar";
-import Sidebar from "@/components/(Admin)/Sidebar1";
 import React from "react";
 
 const page = () => {

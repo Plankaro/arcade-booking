@@ -1,5 +1,4 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {SignInAPI, SignInDto, SessionUser, SignOutAPI} from "@/types/auth.types";
 
 // const baseUrl = process.env.FRONTEND_URL ?? "http://localhost:3000"
 // console.log("auth base url:", {baseUrl, envUrl:process.env.FRONTEND_URL});
@@ -9,7 +8,7 @@ export const authApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: `/api`}),
     tagTypes: ["Session"],
     endpoints: (builder) => ({
-        signIn: builder.mutation<SignInAPI, SignInDto>({
+        signIn: builder.mutation<any, any>({
             query: (data) => ({
                 url: `/auth/sign-in?role=ADMIN`,
                 method: "POST",
@@ -17,11 +16,11 @@ export const authApi = createApi({
             }),
             invalidatesTags: ["Session"],
         }),
-        getSession: builder.query<SessionUser, void>({
+        getSession: builder.query<any, void>({
             query: () => '/auth/session?role=ADMIN',
             providesTags: ["Session"],
         }),
-        signOut: builder.mutation<SignOutAPI, void>({
+        signOut: builder.mutation<any, void>({
             query: () => ({
                 url: `/auth/sign-out`,
                 method: "POST",
