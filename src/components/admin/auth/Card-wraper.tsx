@@ -14,12 +14,14 @@ const Cardwraper: React.FC<CardWraperProps> = ({
     showSocial,
 }) => {
     return (
-        <div className="min-w-[400px] w-[500px] shadow-md rounded-md bg-white p-3"        >
+        <div className="min-w-[400px] w-[500px] shadow-md rounded-md bg-white p-3">
             <CardHeader />
-           <div className="py-4 "> {children}</div>
-           <div className="w-full p-3 items-center justify-center">
-           <Social />
-           </div>
+            <div className="py-4 "> {children}</div>
+            {showSocial && (
+                <div className="w-full p-3 items-center justify-center">
+                    <Social />
+                </div>
+            )}
         </div>
     );
 };

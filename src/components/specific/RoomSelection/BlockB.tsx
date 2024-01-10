@@ -1,9 +1,13 @@
 "use client";
 import Tooltip, { TooltipProps } from '@/components/shared/common/Tooltip';
+import { Building } from '@/store/api/booking/dto/properType';
 import Link from 'next/link';
 import React, { MouseEvent, useEffect, useRef, useState } from 'react'
+import CustomPath from './Path';
 
-const BlockBRoomSelection = ({ floor }: { floor: string }) => {
+
+
+const BlockBRoomSelection = ({ floor ,floorData}: { floor: string , floorData: Building[] | undefined;}) => {
   const pathClassName = ' opacity-0 hover:opacity-70  transition-opacity duration-300 cursor-pointer';
   const paths = [
     {
@@ -59,6 +63,18 @@ const BlockBRoomSelection = ({ floor }: { floor: string }) => {
     }
   }, [imageRef.current]);
 
+
+  const getBookedAndLockValue = (name: string) => {
+    const room = floorData
+      ?.flatMap((property) => property.floors.flatMap((floor) => floor.rooms))
+      .find((room) => room.name === name);
+
+    return room ? { isBooked: room.isBooked, lock: room.lock } : null;
+  };
+     const result = getBookedAndLockValue("3 BHK A")
+
+console.log(result);
+
   return (
     <div className="relative w-full"
       style={{
@@ -78,7 +94,44 @@ const BlockBRoomSelection = ({ floor }: { floor: string }) => {
         viewBox="0 0 3000 1633"
         fill="none">
         {
-          paths.map((path, index) => (
+          paths.map((path, index) =>getBookedAndLockValue(path?.name)?.isBooked === "confirm" ? (
+            // <path
+            //   onMouseEnter={(e) => handlePathMouseEnter(e, "sold")}
+            //   onMouseLeave={handlePathMouseLeave}
+            //   key={index}
+            //   className={`cursor-not-allowed `}
+            //   d={path.path}
+            //   id={path.id}
+            //   stroke="black"
+            //   fill="red"
+            //   strokeWidth="6"
+            // />
+            <CustomPath
+              index={index}
+              hoverLable="Booked"
+              path={{ path: path.path, id: path.id }} // Provide path data and ID
+              handlePathMouseEnter={handlePathMouseEnter}
+              handlePathMouseLeave={handlePathMouseLeave}
+            />
+          ) :
+            getBookedAndLockValue(path?.name)?.isBooked === "notConfirmed" ? (
+
+              <CustomPath
+                index={index}
+                hoverLable="Applyed For Booking"
+                path={{ path: path.path, id: path.id }}
+                handlePathMouseEnter={handlePathMouseEnter}
+                handlePathMouseLeave={handlePathMouseLeave}
+              />
+            ) : getBookedAndLockValue(path?.name)?.lock === "locked" ? (
+              <CustomPath
+                index={index}
+                hoverLable="Sold"
+                path={{ path: path.path, id: path.id }} // Provide path data and ID
+                handlePathMouseEnter={handlePathMouseEnter}
+                handlePathMouseLeave={handlePathMouseLeave}
+              />
+            ) : (
             <Link
               key={index}
               href={`/block-b/${floor}/${path.id}`}>

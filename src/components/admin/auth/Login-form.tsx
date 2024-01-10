@@ -1,15 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import * as z from "zod";
 import { LoginSchema } from "@/schema";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Cardwraper from "./Card-wraper";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, CircularProgress, TextField, Typography } from "@mui/material";
 import Link from "next/link";
+import { useSignInMutation } from "@/store/api/auth";
+import { useRouter } from "next/navigation";
 
 const Loginform = () => {
+    const Router = useRouter();
     const {
         formState: { errors },
         handleSubmit,
@@ -18,33 +21,47 @@ const Loginform = () => {
     } = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
-            email: "",
+            username: "",
             password: "",
         },
     });
 
+    const [SignIn, { isLoading, isSuccess }] = useSignInMutation();
+    useEffect(() => {
+        if (isSuccess) {
+            Router.push("/admin");
+        }
+    }, [isSuccess]);
+
+    const handleSubmits = async (value: any) => {
+        // console.log(value);
+        await SignIn(value).then((res) => {
+            // console.log(res);
+        });
+    };
+
     return (
-        <Cardwraper headrLabel="Welcome Back" showSocial>
+        <Cardwraper headrLabel="Welcome Back">
             <form
-                onSubmit={handleSubmit((value) => console.log(value))}
+                onSubmit={handleSubmit(handleSubmits)}
                 className="flex flex-col space-y-4 gap-3 max-w-md mx-auto"
             >
                 <Controller
-                    name="email"
+                    name="username"
                     control={control}
                     rules={{
-                        required: "Username is required",
+                        required: "Email is required",
                         minLength: {
                             value: 5,
-                            message: "Username should be at least 5 characters",
+                            message: "Email should be at least 5 characters",
                         },
                     }}
                     render={({ field }) => (
                         <TextField
                             {...field}
-                            label="Username"
-                            error={!!errors.email}
-                            helperText={errors.email?.message}
+                            label="Email"
+                            error={!!errors.username}
+                            helperText={errors.username?.message}
                             variant="outlined"
                         />
                     )}
@@ -72,12 +89,29 @@ const Loginform = () => {
                     )}
                 />
 
-                    <Link href={"/"} className="w-full flex text-blue-500 underline justify-end">
-                        Forgot Password
-                    </Link>
-                
-                <Button variant="contained" color="primary" type="submit">
-                    Login
+                <Link
+                    href={"/"}
+                    className="w-full flex text-blue-500 underline justify-end"
+                >
+                    Forgot Password
+                </Link>
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    sx={{ padding: 4 }}
+                >
+                    {isLoading ? (
+                        <CircularProgress
+                            size={20}
+                            sx={{
+                                color: "white",
+                            }}
+                        />
+                    ) : (
+                        "Login"
+                    )}
                 </Button>
             </form>
         </Cardwraper>

@@ -24,6 +24,10 @@ const config: Config = {
           DEFAULT: '#333333',
           dark: '#000000',
         },
+        casual:{
+          DEFAULT:"#74DC2E",
+          dark:"#FB3636",
+        }
       }
     },
   },

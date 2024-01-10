@@ -62,9 +62,14 @@ const BlockBFloorSelection = () => {
       path: "M1237 611L1600 602.469V474L1237 485.04V611Z",
       name: "7th floor",
       id: "floor-7"
-    },]
+    },
+  ]
 
   if (typeof window === 'undefined') return null;
+
+
+
+
   return (
     <div className={`relative w-full`}
       style={{
@@ -81,6 +86,7 @@ const BlockBFloorSelection = () => {
       <svg
         className='absolute z-20'
         style={{ width: '104.8%', height: 'auto', top: '-3.7%', left: '-1.8%' }} viewBox="0 0 2158 1678" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* style={{ width: '104.8%', height: 'auto', top: '-3.7%', left: '-1.8%' }} viewBox="0 0 2158 1678" fill="none" xmlns="http://www.w3.org/2000/svg"> */}
         {
           floorOverleys.map((path, index) => {
             return (

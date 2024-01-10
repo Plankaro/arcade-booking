@@ -1,5 +1,8 @@
+"use client"
 import RoomDetails from "@/components/RoomDetails";
 import VLine from "@/components/shared/Vline";
+import BookingForm from "@/components/specific/BookingForm";
+import { useGetAllPropertyDetailsQuery } from "@/store/api/booking";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -10,6 +13,17 @@ type RoomsType = {
 }[];
 
 const BookingPage = ({ params: { building, floor, room } }: any) => {
+
+console.log(building , floor, room)
+
+const params = {
+  type: building,
+  floor,
+  room
+}
+const { data } = useGetAllPropertyDetailsQuery(params)
+console.log("ac->",data)
+
   const blockARooms: RoomsType = [
     {
       id: "1-BHK-A",
@@ -78,8 +92,8 @@ const BookingPage = ({ params: { building, floor, room } }: any) => {
         ?.image;
 
   return (
-    <>
-      <div className="w-full h-screen grid grid-cols-2 items-center  justify-between px-24 bg-black overflow-hidden">
+    <div className="w-full flex items-center justify-center bg-black ">
+      <div className="w-full h-screen grid grid-cols-2 items-center  justify-between sm:max-w-[1120px] 2xl:max-w-[1920px] overflow-hidden">
         <div className=" max-w-screen w-[80vh] max-h-screen h-[80vh]  object-contain">
           <Image
             layout="responsive"
@@ -90,10 +104,10 @@ const BookingPage = ({ params: { building, floor, room } }: any) => {
             alt=""
           />
         </div>
-
-        <RoomDetails />
+ 
+        <RoomDetails building={building} data={data} floor={floor} room={room} />
       </div>
-      <div className=" p-[2vh] rounded-md fixed top-[10dvh] right-[10dvh] bg-white">
+      {/* <div className=" p-[2vh] rounded-md fixed top-[10dvh] right-[10dvh] bg-white">
         <div>
           <h4 className=" capitalize pb-[2vh] text-[2vh] mb-0">
             {building} <VLine /> {floor} <VLine /> {room}
@@ -107,14 +121,14 @@ const BookingPage = ({ params: { building, floor, room } }: any) => {
             Book Now
           </button>
         </Link>
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 };
 
 export default BookingPage;
 
-export const NoDataFound = () => {
+export function NoDataFound() {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="text-center">
@@ -123,4 +137,4 @@ export const NoDataFound = () => {
       </div>
     </div>
   );
-};
+}

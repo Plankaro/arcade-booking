@@ -17,7 +17,7 @@ const Button = ({ onClick, type = "button", variant = 'primary', disabled = fals
   // Apply different styles based on the variant prop
   switch (variant) {
     case 'accent':
-      buttonClasses += ' bg-accent-gradient text-white hover:bg-accent-dark disabled:bg-black';
+      buttonClasses += ' bg-accent-gradient text-white hover:bg-accent-dark disabled:bg-black w-full';
       break;
     case 'primary':
       buttonClasses += ' bg-primary text-white hover:bg-primary-dark';

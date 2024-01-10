@@ -1,27 +1,34 @@
+import { Booking } from "@/types/bookingTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
 
 export const applicantsApi = createApi({
   reducerPath: "applicants",
-  baseQuery: fetchBaseQuery({ baseUrl: `/api/v1` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `/api/v1/admin` }),
   tagTypes: ["Booking"],
   endpoints: (builder) => ({
-    getAllBooking: builder.query<any,void>({
-      query: () => `/admin`,
+    getAllBooking: builder.query<Booking[], void>({
+      query: () => ``,
       providesTags: ["Booking"],
     }),
-    // updateAppliedJob: builder.mutation<any, any>({
-    //   query: ({id, ...rest}) => ({
-    //     url: `/apply?id=${id}`,
-    //     method: "PUT",
-    //     body: {...rest},
-    //   }),
-    //   invalidatesTags: ["Applicants"],
-    // }),
+    getAllBookingHistory: builder.query<Booking[], void>({
+      query: () => `/history`,
+      providesTags: ["Booking"],
+    }),
+    confirmBooking: builder.mutation<any, any>({
+      query: (data) => ({
+        url: ``,
+        method: "POST",
+        body: data
+      })
+    })
+
   }),
 });
 
 
 export const {
   useGetAllBookingQuery,
-  // useUpdateAppliedJobMutation,
+  useGetAllBookingHistoryQuery,
+  useConfirmBookingMutation
 } = applicantsApi;

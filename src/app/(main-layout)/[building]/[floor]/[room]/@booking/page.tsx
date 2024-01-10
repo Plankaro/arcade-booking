@@ -26,7 +26,7 @@ const BookingModal = ({ params: { building, floor, room } }: any) => {
             </p>
           </header>
 
-          <BookingForm room_id={"0"} />
+          {/* <BookingForm room_id={"0"} /> */}
         </motion.section >
       </AnimatePresence>
     </>

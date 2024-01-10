@@ -5,6 +5,7 @@ import { authApi } from "@/store/api/auth";
 import { assessmentApi } from "./api/assessments";
 import { userApi } from "./api/user";
 import { applicantsApi } from "./api/admin";
+import { bookingApi } from "./api/booking";
 
 const store = configureStore({
   reducer: rootReducer,
@@ -15,6 +16,7 @@ const store = configureStore({
       .concat(assessmentApi.middleware)
       .concat(userApi.middleware)
       .concat(applicantsApi.middleware)
+      .concat(bookingApi.middleware)
 })
 
 export default store;
