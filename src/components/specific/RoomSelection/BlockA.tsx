@@ -1,9 +1,9 @@
 "use client";
 import Tooltip, { TooltipProps } from "@/components/shared/common/Tooltip";
 import { Building, Floor } from "@/store/api/booking/dto/properType";
-import { Button } from "@mui/material";
+import { Backdrop, Button, CircularProgress } from "@mui/material";
 import Link from "next/link";
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useState } from "react";
 import CustomPath from "./Path";
 
 const BlockARoomSelection = ({
@@ -17,6 +17,8 @@ const BlockARoomSelection = ({
     text: "",
     rect: null,
   });
+
+  const [loading, setLoading] = useState(false)
 
   const handlePathMouseEnter = (e: MouseEvent, text: string) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -93,6 +95,14 @@ const BlockARoomSelection = ({
   return (
     <div className="w-screen flex items-center justify-center sm:max-w-[1120px] 2xl:max-w-[1920px] border">
       <div className="relative w-full">
+        {
+          <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={loading}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        }
         <Tooltip {...tooltip} />
         <img
           className=" z-10 block w-full h-auto"
@@ -152,7 +162,7 @@ const BlockARoomSelection = ({
                   handlePathMouseLeave={handlePathMouseLeave}
                 />
               ) : (
-                <Link href={`${floor}/${path.id}`}>
+                <Link href={`${floor}/${path.id}`} onClick={()=>setLoading(true)}>
                   <path
                     key={index}
                     onMouseEnter={(e) => handlePathMouseEnter(e, path.name)}

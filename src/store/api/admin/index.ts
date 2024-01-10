@@ -5,15 +5,19 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const applicantsApi = createApi({
   reducerPath: "applicants",
   baseQuery: fetchBaseQuery({ baseUrl: `/api/v1/admin` }),
-  tagTypes: ["Booking"],
+  // tagTypes: ["Booking"],
   endpoints: (builder) => ({
     getAllBooking: builder.query<Booking[], void>({
       query: () => ``,
-      providesTags: ["Booking"],
+      // providesTags: ["Booking"],
     }),
     getAllBookingHistory: builder.query<Booking[], void>({
       query: () => `/history`,
-      providesTags: ["Booking"],
+      // providesTags: ["Booking"],
+    }),
+    getAllProperty: builder.query<Booking[], void>({
+      query: () => `/property`,
+      // providesTags: ["Booking"],
     }),
     confirmBooking: builder.mutation<any, any>({
       query: (data) => ({
@@ -30,5 +34,6 @@ export const applicantsApi = createApi({
 export const {
   useGetAllBookingQuery,
   useGetAllBookingHistoryQuery,
+  useGetAllPropertyQuery,
   useConfirmBookingMutation
 } = applicantsApi;

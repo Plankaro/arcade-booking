@@ -4,7 +4,6 @@ import { Building } from "./dto/properType";
 export const bookingApi = createApi({
     reducerPath: "booking",
     baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/booking" }),
-    tagTypes: ["property"],
     endpoints: (builder) => ({
         //api endpoints
         getAllPropertyDetails: builder.query<Building[], any>({
@@ -14,7 +13,6 @@ export const bookingApi = createApi({
                 params: data
 
             }),
-            providesTags: ["property"],
         }),
         postBooking: builder.mutation<any, any>({
             query: (data) => ({
@@ -22,7 +20,6 @@ export const bookingApi = createApi({
                 method: "POST",
                 body: data
             }),
-            invalidatesTags:["property"]
         })
     }),
 });

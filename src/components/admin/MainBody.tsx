@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import DetailsCard from "./DetailsCard";
-import DataTable from "./BookingTable";
+import BookingTable from "./BookingTable";
 import ConfirmModel from "./ConfirmModel";
 import { useConfirmBookingMutation, useGetAllBookingQuery } from "@/store/api/admin";
 import { Booking } from "@/types/bookingTypes";
@@ -26,7 +26,7 @@ const MainBody = () => {
 
   const { data: AllBookings, refetch } = useGetAllBookingQuery()
 
-  console.log(AllBookings)
+  // console.log(AllBookings)
 
   const [ConfirmBooking, { isLoading }] = useConfirmBookingMutation()
 
@@ -37,7 +37,7 @@ const MainBody = () => {
       modelLable: data.modelLable,
       value: data.value
     });
-    console.log(data);
+    // console.log(data);
   };
 
   const handelModelClose = () => {
@@ -51,17 +51,17 @@ const MainBody = () => {
 
 
   const handleModelSubmit = async () => {
-    console.log("clicked")
+    // console.log("clicked")
     setBackdropOpen(true)
     const data = {
       isBooked: showModel.model,
       bookingId: showModel?.value?.id,
-      roomId: showModel?.value?.room?.[0].id
+      roomId: showModel?.value?.room?.[0]?.id
 
     }
     console.log(data)
     await ConfirmBooking(data).then((res: any) => {
-      console.log(res)
+      // console.log(res)
 
       setBackdropOpen(false)
       handelModelClose()
@@ -97,7 +97,7 @@ const MainBody = () => {
         </div>
         <div className="w-full h-full overflow-hidden mt-3">
           {" "}
-          <DataTable handelModelClick={handelModelClick} AllBookings={AllBookings ? AllBookings : []} />
+          <BookingTable handelModelClick={handelModelClick} AllBookings={AllBookings ? AllBookings : []} />
         </div>
       </div>
     </>

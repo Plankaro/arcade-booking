@@ -24,6 +24,8 @@ import { usePathname, useRouter } from "next/navigation";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSignOutMutation } from "@/store/api/auth";
+import ArticleIcon from '@mui/icons-material/Article';
+import HistoryIcon from '@mui/icons-material/History';
 
 interface Links {
   title: string;
@@ -42,15 +44,16 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
         url: "/admin",
       },
       {
+        title: 'Property',
+        icon: <ArticleIcon />,
+        url: '/property',
+      },
+      {
         title: "Hostory",
-        icon: <WorkOutlineIcon />,
+        icon: <HistoryIcon />,
         url: "/history",
       },
-      // {
-      //   title: 'Assessment',
-      //   icon: <AssignmentOutlinedIcon />,
-      //   url: '/assessment',
-      // },
+
       // {
       //   title: 'Interview',
       //   icon: <ContactsOutlinedIcon />,

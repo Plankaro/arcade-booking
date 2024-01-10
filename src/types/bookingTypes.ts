@@ -14,6 +14,7 @@ export interface Floor {
     isTrash: boolean;
     name: string;
     propertyId: string;
+    rooms:Room[]
 }
 
 export interface Booking {
@@ -24,6 +25,7 @@ export interface Booking {
     email: string;
     firstName: string;
     lastName: string
-    floor: Floor[];
-    room:Room[]
+    floors: Floor[];
+    rooms:Room[]
 }
+

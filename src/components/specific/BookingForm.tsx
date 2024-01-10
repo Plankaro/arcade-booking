@@ -5,7 +5,7 @@ import Button from "../shared/common/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { bookingFormSchema } from "@/resolvers/BookingForm";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Container, Grid, IconButton, TextField } from "@mui/material";
+import { CircularProgress, Container, Grid, IconButton, TextField } from "@mui/material";
 import { usePostBookingMutation } from "@/store/api/booking";
 import { useRouter } from "next/navigation";
 
@@ -70,54 +70,17 @@ const BookingForm = ({
       >
         <CancelIcon sx={{ color: "#FF7E16", fontSize: 30 }} />
       </IconButton>
-      {/* <form onSubmit={handleSubmit(submitForm)}>
-        <div className=' flex flex-col gap-[1vh]'>
-          <TextInput
-            required
-            name="fullName"
-            placeholder='Full name'
-            register={register}
-            error={errors.fullName?.message}
-          />
-          <TextInput
-            required
-            name="phone"
-            placeholder='Phone number'
-            register={register}
-            error={errors.phone?.message}
-          />
-          <TextInput
-            required
-            name="email"
-            placeholder='Email'
-            register={register}
-            error={errors.email?.message}
-          />
-          <TextInput
-            name="message"
-            placeholder='Messge'
-            register={register}
-            error={errors.message?.message}
-          />
-          <Button
-            variant='accent'
-            type='submit'
-            isLoading={isSubmitting || isLoading}
-            disabled={isSubmitting || isLoading}
-          > Submit </Button>
-        </div>
-      </form> */}
 
       <Container maxWidth="sm">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <TextField
                 fullWidth
                 label="User Name"
                 {...register("userName")}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <TextField
                 fullWidth
@@ -146,10 +109,13 @@ const BookingForm = ({
               <Button
                 variant="accent"
                 type="submit"
-                isLoading={isSubmitting || isLoading}
+                // isLoading={isSubmitting || isLoading}
                 disabled={isSubmitting || isLoading}
               >
-                Submit
+                {
+                  isLoading ? <CircularProgress size={20}/> : 'Submit'
+                }
+
               </Button>
             </Grid>
           </Grid>
