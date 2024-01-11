@@ -98,7 +98,7 @@ const BlockAFloorSelection = () => {
 
 
   return (
-    <div className={`relative w-full room`}
+    <div className={`relative w-full home`}
       // style={{
       //   maxWidth: `${window.innerHeight * imageNaturalAspectRatio ?? 1000}px`,
       // }}
