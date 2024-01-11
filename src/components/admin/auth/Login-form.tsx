@@ -10,6 +10,8 @@ import { Button, CircularProgress, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 import { useSignInMutation } from "@/store/api/auth";
 import { useRouter } from "next/navigation";
+import { Diversity1 } from "@mui/icons-material";
+import Image from "next/image";
 
 const Loginform = () => {
     const Router = useRouter();
@@ -42,6 +44,15 @@ const Loginform = () => {
 
     return (
         <Cardwraper headrLabel="Welcome Back">
+            <div className="w-full flex items-center justify-center">
+                <Image
+                    height={100}
+                    width={100}
+                    src={"/logo-new.png"}
+                    alt="logo"
+                    className="mr-4"
+                />
+            </div>
             <form
                 onSubmit={handleSubmit(handleSubmits)}
                 className="flex flex-col space-y-4 gap-3 max-w-md mx-auto"
