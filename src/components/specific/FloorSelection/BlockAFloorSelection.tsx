@@ -64,7 +64,7 @@ const BlockAFloorSelectionSvg = [
   },
 ]
 
-const ResidentialFloorSelection = () => {
+const BlockAFloorSelection = () => {
   const pathClassName = ' opacity-0 hover:opacity-90  transition-opacity duration-300 cursor-pointer';
   const [tooltip, setTooltip] = React.useState<TooltipProps>({ text: '', rect: null, });
   const [isBackdropShow, setisBackdropShow] = useState<boolean>(false)
@@ -90,18 +90,18 @@ const ResidentialFloorSelection = () => {
     }
   }, [imageRef.current]);
 
-  useCallback(() => {
-    if (typeof window === 'undefined') {
-      router.refresh()
-    }
-  }, [window])
+  // useCallback(() => {
+  //   if (typeof window === 'undefined') {
+  //     router.refresh()
+  //   }
+  // }, [window])
 
 
   return (
-    <div className={`relative w-full`}
-      style={{
-        maxWidth: `${window.innerHeight * imageNaturalAspectRatio ?? 1000}px`,
-      }}
+    <div className={`relative w-full room`}
+      // style={{
+      //   maxWidth: `${window.innerHeight * imageNaturalAspectRatio ?? 1000}px`,
+      // }}
     >
       <Tooltip {...tooltip} />
       <Backdrop
@@ -143,7 +143,7 @@ const ResidentialFloorSelection = () => {
   )
 }
 
-export default ResidentialFloorSelection
+export default BlockAFloorSelection
 
 
 

@@ -1,5 +1,5 @@
-import BlockAFloorSelection from '@/components/specific/FloorSelection/BlockA'
-import BlockBFloorSelection from '@/components/specific/FloorSelection/BlockB'
+import BlockAFloorSelection from '@/components/specific/FloorSelection/BlockAFloorSelection'
+import BlockBFloorSelection from '@/components/specific/FloorSelection/BlockBFloorSelection'
 // import MainBuildingOverlay from '@/components/specific/Home/MainBuildingOverlay'
 // import BlockARoomSelection from '@/components/specific/RoomSelection/BlockA'
 // import BlockBRoomSelection from '@/components/specific/RoomSelection/BlockB'
