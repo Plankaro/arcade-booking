@@ -3,7 +3,7 @@ import { Building } from "./dto/properType";
 
 export const bookingApi = createApi({
     reducerPath: "booking",
-    baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/booking" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "https://arcade-server-17j1.onrender.com/api/v1/booking" }),
     endpoints: (builder) => ({
         //api endpoints
         getAllPropertyDetails: builder.query<Building[], any>({
