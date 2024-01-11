@@ -1,7 +1,7 @@
 import React from 'react'
 import MainBody from '@/components/admin/MainBody'
 
-const page = () => {
+const AdminPage = () => {
   return (
     <div>
       <MainBody />
@@ -9,4 +9,4 @@ const page = () => {
   )
 }
 
-export default page
+export default AdminPage
