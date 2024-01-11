@@ -9,6 +9,8 @@ const isAuthenticated = async () => {
     process.env.NODE_ENV === "development"
       ? process.env.DEVELOPMENT_API_URL
       : process.env.API_URL;
+
+      console.log("layout_url-->", `${api_uri}/api/v1/auth/session?role=ADMIN`);
   return await fetch(`${api_uri}/api/v1/auth/session?role=ADMIN`, {
     headers: {
       authorization: `Bearer ${token?.value}`,
