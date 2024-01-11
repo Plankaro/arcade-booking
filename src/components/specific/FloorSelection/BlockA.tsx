@@ -113,7 +113,7 @@ const ResidentialFloorSelection = () => {
       >
         {BlockAFloorSelectionSvg.map(({ path, floor, id }, index) => {
           return (
-            <Link href={`block-a/${id}`} onClick={()=>setisBackdropShow(true)}>
+            <Link href={`block-a/${id}`} key={index} onClick={()=>setisBackdropShow(true)}>
               <path
                 key={index}
                 className={pathClassName}

@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
   //   ? 'https://jobportal-server-backend.yajxvx.easypanel.host'
   //   : "http://localhost:5000";
 
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.API_URL || "https://arcade-server-17j1.onrender.com"
 
   console.log('-> apiUrl', apiUrl);
 
@@ -25,5 +25,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/api/:path*',
+  matcher: '/api/v1:path*',
 }

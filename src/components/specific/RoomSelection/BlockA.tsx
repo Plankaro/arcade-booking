@@ -162,7 +162,7 @@ const BlockARoomSelection = ({
                   handlePathMouseLeave={handlePathMouseLeave}
                 />
               ) : (
-                <Link href={`${floor}/${path.id}`} onClick={()=>setLoading(true)}>
+                <Link href={`${floor}/${path.id}`} key={index} onClick={()=>setLoading(true)}>
                   <path
                     key={index}
                     onMouseEnter={(e) => handlePathMouseEnter(e, path.name)}

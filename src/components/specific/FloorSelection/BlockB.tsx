@@ -105,7 +105,7 @@ const BlockBFloorSelection = () => {
         {
           floorOverleys.map((path, index) => {
             return (
-              <Link key={index} href={`/block-b/${path.id}`} onClick={()=>setisBackdropShow(true)}>
+              <Link key={index} href={`/block-b/${path.id}`}  onClick={()=>setisBackdropShow(true)}>
                 <path
                   d={path.path}
                   className={pathClassName}
