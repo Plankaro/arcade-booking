@@ -2,7 +2,8 @@
 import Tooltip, { TooltipProps } from '@/components/shared/common/Tooltip';
 import { Backdrop, CircularProgress } from '@mui/material';
 import Link from 'next/link';
-import React, { MouseEvent, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation';
+import React, { MouseEvent, useCallback, useEffect, useState } from 'react'
 
 
 // starts from top floor
@@ -68,9 +69,12 @@ const ResidentialFloorSelection = () => {
   const [tooltip, setTooltip] = React.useState<TooltipProps>({ text: '', rect: null, });
   const [isBackdropShow, setisBackdropShow] = useState<boolean>(false)
 
+
+  const router = useRouter()
+
   const onMouseEnter = (e: React.MouseEvent, floor: string) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setTooltip({text: floor,rect,})
+    setTooltip({ text: floor, rect, })
   }
   const onMouseLeave = () => {
     setTooltip({
@@ -86,7 +90,13 @@ const ResidentialFloorSelection = () => {
     }
   }, [imageRef.current]);
 
-  // if (typeof window === 'undefined') return null;
+  useCallback(() => {
+    if (typeof window === 'undefined') {
+      router.refresh()
+    }
+  }, [window])
+
+
   return (
     <div className={`relative w-full`}
       style={{
@@ -113,7 +123,7 @@ const ResidentialFloorSelection = () => {
       >
         {BlockAFloorSelectionSvg.map(({ path, floor, id }, index) => {
           return (
-            <Link href={`block-a/${id}`} key={index} onClick={()=>setisBackdropShow(true)}>
+            <Link href={`block-a/${id}`} key={index} onClick={() => setisBackdropShow(true)}>
               <path
                 key={index}
                 className={pathClassName}
