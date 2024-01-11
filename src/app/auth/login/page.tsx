@@ -1,7 +1,9 @@
+// "use client"
 import Loginform from "@/components/admin/auth/Login-form";
 import { redirect } from "next/navigation";
 import React from "react";
 import { cookies } from "next/headers";
+// import { useGetSessionQuery } from "@/store/api/auth";
 
 
 const isAuthenticated = async () => {
@@ -23,13 +25,19 @@ const isAuthenticated = async () => {
 };
 
 
-const page = async () => {
+const Login = async () => {
   const isAuth = await isAuthenticated();
-  // console.log(isAuth)
+  console.log(isAuth)
   if(isAuth){
     return redirect("/admin"); 
   }
+
+  // const session: any = useGetSessionQuery()
+  // console.log("login session: ", session)
+  // if (session?.data?.isActive) {
+  //   window.location.reload()
+  // }
   return <Loginform />;
 };
 
-export default page;
+export default Login;

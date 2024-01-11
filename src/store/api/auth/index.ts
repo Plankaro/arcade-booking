@@ -5,7 +5,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
     reducerPath: "auth",
-    baseQuery: fetchBaseQuery({baseUrl: `https://arcade-server-17j1.onrender.com/api/v1`}),
+    baseQuery: fetchBaseQuery({baseUrl: `/api/v1`}),
     tagTypes: ["Session"],
     endpoints: (builder) => ({
         signIn: builder.mutation<any, any>({

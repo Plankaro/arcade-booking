@@ -4,7 +4,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const applicantsApi = createApi({
   reducerPath: "applicants",
-  baseQuery: fetchBaseQuery({ baseUrl: `https://arcade-server-17j1.onrender.com/api/v1/admin` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `/api/v1/admin` }),
+  // baseQuery: fetchBaseQuery({ baseUrl: `https://arcade-server-17j1.onrender.com/api/v1/admin` }),
   // tagTypes: ["Booking"],
   endpoints: (builder) => ({
     getAllBooking: builder.query<Booking[], void>({

@@ -2,6 +2,7 @@ import Sidebar from "@/components/admin/Sidebar";
 import { redirect } from "next/navigation";
 import React from "react";
 import { cookies } from "next/headers";
+import Login from "../auth/login/page";
 
 const isAuthenticated = async () => {
   const token = cookies().get("token");
@@ -10,30 +11,41 @@ const isAuthenticated = async () => {
       ? process.env.DEVELOPMENT_API_URL
       : process.env.API_URL;
 
-      console.log("layout_url-->", `${api_uri}/api/v1/auth/session?role=ADMIN`);
+  console.log("layout_url-->", `${api_uri}/api/v1/auth/session?role=ADMIN`);
   return await fetch(`${api_uri}/api/v1/auth/session?role=ADMIN`, {
     headers: {
       authorization: `Bearer ${token?.value}`,
     },
   }).then(async (res) => {
     const session = await res.json();
-    // console.log(session)
+    console.log(session)
     // console.log("=>(layout.tsx:16) session", session);
     return session.isActive;
   });
 };
 
-const layout =  async({ children }: { children: React.ReactNode }) => {
-  const isAuth =  await isAuthenticated();
+const layout = async ({ children }: { children: React.ReactNode }) => {
+  const isAuth = await isAuthenticated();
 
   if (!isAuth) {
     redirect("/auth/login");
   }
+  //{
+  //   isAuth ?
+  //     <div className=" ">
+  //       <Sidebar>{children}</Sidebar>
+  //     </div> :
 
+  //     <div className="w-full h-screen flex items-center justify-center"><Login /></div>
+  // }
   return (
-    <div className=" ">
-      <Sidebar>{children}</Sidebar>
-    </div>
+    <>
+
+      <div className=" ">
+        <Sidebar>{children}</Sidebar>
+      </div>
+    </>
+
   );
 };
 
