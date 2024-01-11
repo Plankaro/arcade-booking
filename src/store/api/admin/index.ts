@@ -15,14 +15,25 @@ export const applicantsApi = createApi({
       query: () => `/history`,
       // providesTags: ["Booking"],
     }),
-    getAllProperty: builder.query<Booking[], void>({
-      query: () => `/property`,
+    getAllProperty: builder.query<Booking[], string | null>({
+      query: (type) => `/${type}`,
+      // providesTags: ["Booking"],
+    }),
+    getDetails: builder.query<any, void>({
+      query: () => `/details`,
       // providesTags: ["Booking"],
     }),
     confirmBooking: builder.mutation<any, any>({
       query: (data) => ({
         url: ``,
         method: "POST",
+        body: data
+      })
+    }),
+    lockBooking: builder.mutation<any, any>({
+      query: (data) => ({
+        url: `/lock`,
+        method: "PUT",
         body: data
       })
     })
@@ -35,5 +46,7 @@ export const {
   useGetAllBookingQuery,
   useGetAllBookingHistoryQuery,
   useGetAllPropertyQuery,
-  useConfirmBookingMutation
+  useGetDetailsQuery,
+  useConfirmBookingMutation,
+  useLockBookingMutation
 } = applicantsApi;

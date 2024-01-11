@@ -1,0 +1,5 @@
+@media screen and (max-height: 1020px) {
+  .home {
+    max-width: 1220px !important;
+  }
+}

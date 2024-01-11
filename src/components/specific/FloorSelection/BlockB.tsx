@@ -1,11 +1,13 @@
 "use client";
 import Tooltip, { TooltipProps } from '@/components/shared/common/Tooltip';
+import { Backdrop, CircularProgress } from '@mui/material';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react'
 
 const BlockBFloorSelection = () => {
   const pathClassName = 'opacity-0 hover:opacity-90 transition-opacity duration-300 cursor-pointer';
   const [tooltip, setTooltip] = React.useState<TooltipProps>({ text: '', rect: null, });
+  const [isBackdropShow, setisBackdropShow] = useState<boolean>(false)
 
   const onMouseEnter = (e: React.MouseEvent, floor: string) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -63,7 +65,14 @@ const BlockBFloorSelection = () => {
       name: "7th floor",
       id: "floor-7"
     },
+    {
+      path: "M1237 483V330.35L1601 311V472.25L1237 483Z",
+      name: "8th floor",
+      id: "floor-8"
+    },
   ]
+
+  // <path xmlns="http://www.w3.org/2000/svg" d="M1237 483V330.35L1601 311V472.25L1237 483Z" fill="black" fill-opacity="0.25" stroke="black"/>
 
   if (typeof window === 'undefined') return null;
 
@@ -77,6 +86,12 @@ const BlockBFloorSelection = () => {
       }}
     >
       <Tooltip {...tooltip} />
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isBackdropShow}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <img
         ref={imageRef}
         className='z-10 block w-full h-auto'
@@ -90,7 +105,7 @@ const BlockBFloorSelection = () => {
         {
           floorOverleys.map((path, index) => {
             return (
-              <Link key={index} href={`/block-b/${path.id}`}>
+              <Link key={index} href={`/block-b/${path.id}`} onClick={()=>setisBackdropShow(true)}>
                 <path
                   d={path.path}
                   className={pathClassName}

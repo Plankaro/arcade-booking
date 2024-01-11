@@ -89,12 +89,12 @@ const Loginform = () => {
                     )}
                 />
 
-                <Link
+                {/* <Link
                     href={"/"}
                     className="w-full flex text-blue-500 underline justify-end"
                 >
                     Forgot Password
-                </Link>
+                </Link> */}
 
                 <Button
                     variant="contained"

@@ -113,7 +113,7 @@ const BookingForm = ({
                 disabled={isSubmitting || isLoading}
               >
                 {
-                  isLoading ? <CircularProgress size={20}/> : 'Submit'
+                  isLoading ? <CircularProgress size={20}/> : 'Book'
                 }
 
               </Button>

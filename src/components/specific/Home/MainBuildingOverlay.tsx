@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import React, { use, useEffect } from 'react'
+import "../../../app/style/homestyle.css"
 
 const MainBuildingOverlay = () => {
   const imageRef = React.useRef<HTMLImageElement>(null);
@@ -10,18 +11,27 @@ const MainBuildingOverlay = () => {
       setImageNaturalAspectRatio(imageRef.current.naturalWidth / imageRef.current.naturalHeight);
     }
   }, [imageRef.current]);
+
+  const largerScreensStyles = {
+    '@media screen and (max-height: 900px)': {
+      maxWidth: '1220px',
+    },
+  }
+
+
   return (
-    <div className={`relative w-full sm:max-w-[1120px] 2xl:max-w-[1920px]   `}
+    <div className={`relative w-full home`}
       // style={{
-      //   maxWidth: `1120px`,
+      //   ...largerScreensStyles['@media screen and (max-height: 900px)'],
       // }}
-      
+
     >
       <img
         ref={imageRef}
         src="/Images/hero/Hero-small.jpg"
         alt="Your Image"
-        className="z-10 block w-full h-auto object-right-bottom"
+        className="z-10 block w-full h-auto object-cover"
+      // className="z-10 block w-full h-auto object-right-bottom"
       />
       <svg
         className='absolute'

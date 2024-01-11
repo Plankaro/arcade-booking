@@ -93,7 +93,7 @@ const BlockARoomSelection = ({
   };
 
   return (
-    <div className="w-screen flex items-center justify-center sm:max-w-[1120px] 2xl:max-w-[1920px] border">
+    <div className="w-screen flex items-center justify-center  lg:w-[1220px] 2xl:w-[1440px] ">
       <div className="relative w-full">
         {
           <Backdrop

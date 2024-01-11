@@ -16,7 +16,7 @@ const RoomSelectionPage = ({ params: { building, floor } }: any) => {
 
 
   return (
-    <div className=" max-w-full overflow-hidden relative min-h-screen max-h-screen bg-black flex items-center justify-center ">
+    <div className=" max-w-full overflow-hidden relative min-h-screen max-h-screen bg-black flex items-center justify-center  ">
       {building === "block-a" && <BlockARoomSelection floor={floor} floorData={data ? data : []} />}
       {building === "block-b" && <BlockBRoomSelection floor={floor} floorData={data ? data : []} />}
     </div>

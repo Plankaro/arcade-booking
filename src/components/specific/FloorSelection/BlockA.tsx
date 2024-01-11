@@ -1,7 +1,8 @@
 "use client";
 import Tooltip, { TooltipProps } from '@/components/shared/common/Tooltip';
+import { Backdrop, CircularProgress } from '@mui/material';
 import Link from 'next/link';
-import React, { MouseEvent, useEffect } from 'react'
+import React, { MouseEvent, useEffect, useState } from 'react'
 
 
 // starts from top floor
@@ -65,6 +66,7 @@ const BlockAFloorSelectionSvg = [
 const ResidentialFloorSelection = () => {
   const pathClassName = ' opacity-0 hover:opacity-90  transition-opacity duration-300 cursor-pointer';
   const [tooltip, setTooltip] = React.useState<TooltipProps>({ text: '', rect: null, });
+  const [isBackdropShow, setisBackdropShow] = useState<boolean>(false)
 
   const onMouseEnter = (e: React.MouseEvent, floor: string) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -92,6 +94,12 @@ const ResidentialFloorSelection = () => {
       }}
     >
       <Tooltip {...tooltip} />
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isBackdropShow}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <img
         ref={imageRef}
         className='z-10 block w-full h-auto'
@@ -105,7 +113,7 @@ const ResidentialFloorSelection = () => {
       >
         {BlockAFloorSelectionSvg.map(({ path, floor, id }, index) => {
           return (
-            <Link href={`block-a/${id}`}>
+            <Link href={`block-a/${id}`} onClick={()=>setisBackdropShow(true)}>
               <path
                 key={index}
                 className={pathClassName}

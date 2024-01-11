@@ -4,10 +4,13 @@ import { Building } from '@/store/api/booking/dto/properType';
 import Link from 'next/link';
 import React, { MouseEvent, useEffect, useRef, useState } from 'react'
 import CustomPath from './Path';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 
 
 const BlockBRoomSelection = ({ floor ,floorData}: { floor: string , floorData: Building[] | undefined;}) => {
+  const [isBackdropShow, setisBackdropShow] = useState(false)
+
   const pathClassName = ' opacity-0 hover:opacity-70  transition-opacity duration-300 cursor-pointer';
   const paths = [
     {
@@ -73,15 +76,21 @@ const BlockBRoomSelection = ({ floor ,floorData}: { floor: string , floorData: B
   };
      const result = getBookedAndLockValue("3 BHK A")
 
-console.log(result);
+// console.log(result);
 
   return (
-    <div className="relative w-full"
+    <div className="relative w-full lg:w-[1220px] 2xl:w-[1440px]"
       style={{
         maxWidth: `${imageRef.current?.width}px`,
       }}
     >
       <Tooltip {...tooltip} />
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isBackdropShow}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <img
         ref={imageRef}
         className=' z-10 block w-full h-auto'
@@ -134,7 +143,7 @@ console.log(result);
             ) : (
             <Link
               key={index}
-              href={`/block-b/${floor}/${path.id}`}>
+              href={`/block-b/${floor}/${path.id}`} onClick={()=>setisBackdropShow(true)}>
               <path
                 d={path.path}
                 className={pathClassName}

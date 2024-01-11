@@ -19,12 +19,18 @@ export interface Floor {
 
 export interface Booking {
     bookingId: string;
+    type:string;
     isBooked:string;
+    lock?:string;
     createdAt: string; // Consider using Date type if you parse the string into a Date object
     description: string;
     email: string;
     firstName: string;
     lastName: string
+    floor?: string;
+    room?: string;
+    roomId?: string;
+    floorId?: string;
     floors: Floor[];
     rooms:Room[]
 }

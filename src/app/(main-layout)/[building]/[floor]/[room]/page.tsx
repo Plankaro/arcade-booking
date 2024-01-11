@@ -14,15 +14,15 @@ type RoomsType = {
 
 const BookingPage = ({ params: { building, floor, room } }: any) => {
 
-console.log(building , floor, room)
+  console.log(building, floor, room)
 
-const params = {
-  type: building,
-  floor,
-  room
-}
-const { data } = useGetAllPropertyDetailsQuery(params)
-console.log("ac->",data)
+  const params = {
+    type: building,
+    floor,
+    room
+  }
+  const { data } = useGetAllPropertyDetailsQuery(params)
+  console.log("ac->", data)
 
   const blockARooms: RoomsType = [
     {
@@ -92,36 +92,23 @@ console.log("ac->",data)
         ?.image;
 
   return (
-    <div className="w-full flex items-center justify-center bg-black ">
-      <div className="w-full h-screen grid grid-cols-2 items-center  justify-between sm:max-w-[1120px] 2xl:max-w-[1920px] overflow-hidden">
-        <div className=" max-w-screen w-[80vh] max-h-screen h-[80vh]  object-contain">
+    <div className="w-full flex items-center justify-center bg-black">
+      <div className="w-full h-screen flex flex-wrap items-center  justify-center p-9 overflow-hidden overflow-y-scroll">
+        <div className="  w-[40rem] h-[40rem]">
           <Image
-            layout="responsive"
-            width={600}
-            height={600}
+            // layout="responsive"
+            width={500}
+            height={400}
             className=" object-cover h-full"
             src={roomImage ? roomImage : ""}
             alt=""
           />
         </div>
- 
-        <RoomDetails building={building} data={data} floor={floor} room={room} />
-      </div>
-      {/* <div className=" p-[2vh] rounded-md fixed top-[10dvh] right-[10dvh] bg-white">
-        <div>
-          <h4 className=" capitalize pb-[2vh] text-[2vh] mb-0">
-            {building} <VLine /> {floor} <VLine /> {room}
-          </h4>
+        <div className="w-[40rem] h-[30rem] flex items-center">
+
+          <RoomDetails building={building} data={data} floor={floor} room={room} />
         </div>
-        <Link
-          href={`/${building}/${floor}/${room}/?booking=true`}
-          className=" m-0 p-0 box-border"
-        >
-          <button className=" bg-accent-gradient px-[4vh] py-[2vh] text-[2vh] rounded-md">
-            Book Now
-          </button>
-        </Link>
-      </div> */}
+      </div>
     </div>
   );
 };

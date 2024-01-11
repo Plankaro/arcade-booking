@@ -7,3 +7,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+::-webkit-scrollbar{
+  width: 0%;
+}
+
+/* For Firefox browsers */
+* {
+  scrollbar-color: transparent transparent;
+}

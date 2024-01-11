@@ -11,7 +11,7 @@ const layout = ({ children }: {
         <Header />
         {children}
       </div>
-      <BackButton />
+      {/* <BackButton /> */}
     </div>
   )
 }

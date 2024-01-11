@@ -6,7 +6,7 @@ import { useGetAllBookingHistoryQuery } from "@/store/api/admin";
 
 const History = () => {
 
-    const { data } = useGetAllBookingHistoryQuery()
+    const { data,refetch } = useGetAllBookingHistoryQuery()
     // console.log({data})
     return (
         <div className="w-full h-full flex flex-col items-start justify-center">
@@ -16,7 +16,7 @@ const History = () => {
 
             <div className="w-full h-full overflow-hidden">
                 {" "}
-                <BookingTable AllBookings={data ? data : []} />
+                <BookingTable AllBookings={data ? data : []} historyRefetch={refetch} />
             </div>
         </div>
     );

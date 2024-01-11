@@ -4,7 +4,7 @@ interface ContainerProps {
 }
 const Container: FC<ContainerProps> = ({ children }) => {
     return (
-        <div className="w-full sm:max-w-[1120px] 2xl:max-w-[1920px] bg-black ">
+        <div className="w-full  bg-black ">
             {children}
         </div>
     );
