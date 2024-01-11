@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Building } from "./dto/properType";
 
+const api_uri = process.env.NEXT_PUBLIC_API_URL
+console.log(api_uri)
 export const bookingApi = createApi({
     reducerPath: "booking",
-    baseQuery: fetchBaseQuery({ baseUrl: "https://arcade-server-17j1.onrender.com/api/v1/booking" }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${api_uri}/api/v1/booking` }),
     endpoints: (builder) => ({
         //api endpoints
         getAllPropertyDetails: builder.query<Building[], any>({

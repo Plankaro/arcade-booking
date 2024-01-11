@@ -81,7 +81,7 @@ const MainBody: React.FC<MainBodyProps> = ({
     console.log(data);
     await ConfirmBooking(data)
       .then((res: any) => {
-        console.log(res);
+        console.log("Booking Response->",res);
 
         setBackdropOpen(false);
         handelModelClose();

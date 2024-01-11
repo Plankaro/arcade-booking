@@ -46,10 +46,10 @@ const BookingForm = ({
       roomId: Datas?.[0]?.floors?.[0]?.rooms?.[0]?.id,
       ...data,
     };
-    // console.log({ Data });
+    console.log({ Data });
     await ApplyForBooking(Data)
       .then((res: any) => {
-        // console.log(res)
+        console.log(res)
         handleModelClose();
         router.back();
       })
