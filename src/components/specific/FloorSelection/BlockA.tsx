@@ -86,7 +86,7 @@ const ResidentialFloorSelection = () => {
     }
   }, [imageRef.current]);
 
-  if (typeof window === 'undefined') return null;
+  // if (typeof window === 'undefined') return null;
   return (
     <div className={`relative w-full`}
       style={{
