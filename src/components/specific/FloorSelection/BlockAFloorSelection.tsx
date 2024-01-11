@@ -4,7 +4,7 @@ import { Backdrop, CircularProgress } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { MouseEvent, useCallback, useEffect, useState } from 'react'
-
+import "../../../app/style/homestyle.css"
 
 // starts from top floor
 const BlockAFloorSelectionSvg = [
