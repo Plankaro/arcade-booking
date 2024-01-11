@@ -74,13 +74,13 @@ const BookingForm = ({
       <Container maxWidth="sm">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
-            {/* <Grid item xs={12}>
+            <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="User Name"
-                {...register("userName")}
+                label="mobileNumber"
+                {...register("mobileNumber")}
               />
-            </Grid> */}
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 fullWidth

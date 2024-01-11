@@ -11,7 +11,7 @@ export const bookingFormSchema = yup.object().shape({
   // type: yup.string().required(),
   // floorId: yup.string().required(),
   // roomId: yup.string().required(),
-  // userName: yup.string().required(),
+  mobileNumber: yup.string().required(),
   firstName: yup.string().required(),
   lastName: yup.string().required(),
   description: yup.string().required(),
