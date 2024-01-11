@@ -5,7 +5,7 @@ import BackButton from "./shared/BackButton";
 const Header = () => {
     return (
         <div className="w-full  absolute z-20 top-3 left-1/2 transform -translate-x-1/2 max-w-[1500px] ">
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex justify-between items-center px-4">
                 <div className="flex items-center h-full">
                     {" "}
                     <BackButton />
