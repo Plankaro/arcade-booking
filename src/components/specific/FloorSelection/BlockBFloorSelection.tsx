@@ -3,6 +3,7 @@ import Tooltip, { TooltipProps } from '@/components/shared/common/Tooltip';
 import { Backdrop, CircularProgress } from '@mui/material';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react'
+import "../../../app/style/homestyle.css"
 
 const BlockBFloorSelection = () => {
   const pathClassName = 'opacity-0 hover:opacity-90 transition-opacity duration-300 cursor-pointer';
@@ -74,16 +75,16 @@ const BlockBFloorSelection = () => {
 
   // <path xmlns="http://www.w3.org/2000/svg" d="M1237 483V330.35L1601 311V472.25L1237 483Z" fill="black" fill-opacity="0.25" stroke="black"/>
 
-  if (typeof window === 'undefined') return null;
+  // if (typeof window === 'undefined') return null;
 
 
 
 
   return (
-    <div className={`relative w-full`}
-      style={{
-        maxWidth: `${window.innerHeight * imageNaturalAspectRatio}px`,
-      }}
+    <div className={`relative w-full room`}
+      // style={{
+      //   maxWidth: `${window.innerHeight * imageNaturalAspectRatio}px`,
+      // }}
     >
       <Tooltip {...tooltip} />
       <Backdrop

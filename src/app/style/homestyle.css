@@ -2,4 +2,7 @@
   .home {
     max-width: 1000px !important;
   }
+  .room {
+    max-width: 800px !important;
+  }
 }
