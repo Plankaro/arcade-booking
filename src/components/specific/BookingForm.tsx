@@ -5,7 +5,13 @@ import Button from "../shared/common/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { bookingFormSchema } from "@/resolvers/BookingForm";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { CircularProgress, Container, Grid, IconButton, TextField } from "@mui/material";
+import {
+  CircularProgress,
+  Container,
+  Grid,
+  IconButton,
+  TextField,
+} from "@mui/material";
 import { usePostBookingMutation } from "@/store/api/booking";
 import { useRouter } from "next/navigation";
 
@@ -49,7 +55,7 @@ const BookingForm = ({
     console.log({ Data });
     await ApplyForBooking(Data)
       .then((res: any) => {
-        console.log(res)
+        console.log(res);
         handleModelClose();
         router.back();
       })
@@ -77,13 +83,6 @@ const BookingForm = ({
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="mobileNumber"
-                {...register("mobileNumber")}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
                 label="First Name"
                 {...register("firstName")}
               />
@@ -98,13 +97,21 @@ const BookingForm = ({
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Description"
-                {...register("description")}
+                label="mobileNumber"
+                {...register("mobileNumber")}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField fullWidth label="Email" {...register("email")} />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Description"
+                {...register("description")}
+              />
+            </Grid>
+
             <Grid item xs={12}>
               <Button
                 variant="accent"
@@ -112,10 +119,7 @@ const BookingForm = ({
                 // isLoading={isSubmitting || isLoading}
                 disabled={isSubmitting || isLoading}
               >
-                {
-                  isLoading ? <CircularProgress size={20}/> : 'Book'
-                }
-
+                {isLoading ? <CircularProgress size={20} /> : "Book Now"}
               </Button>
             </Grid>
           </Grid>
