@@ -1,6 +1,10 @@
 "use client";
 import Cardwraper from '@/components/admin/auth/Card-wraper'
+import { useAlert } from '@/components/shared/Alert';
+import { useForgetPasswordMutation, useSendOtpMutation, useVerifyOtpMutation } from '@/store/api/auth';
 import { Box, Button, IconButton, InputAdornment, TextField } from '@mui/material';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
@@ -17,31 +21,121 @@ const ForgetPassword = () => {
 export default ForgetPassword
 
 const ForgetPasswordForm = () => {
+  const [SendOtp,
+    {
+      data: sendOtpData,
+      // loading: sendOtpLoading,
+      error: sendOtpError }] = useSendOtpMutation();
+  const [VerifyOtp,
+    {
+      data: verifyOtpData,
+      // loading: verifyOtpLoading,
+      error: verifyOtpError }] = useVerifyOtpMutation();
+  const [ResetPassword,
+    {
+      data: resetPasswordData,
+      // loading: forgetPasswordLoading,
+      error: forgetPasswordError }] = useForgetPasswordMutation();
+
   const { register, handleSubmit, getValues, setError, clearErrors, formState: { errors } } = useForm();
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
-  const [status, setStatus] = useState<"notVerified" | "verified">("notVerified");
+
+  const [status, setStatus] = useState<"emailEnter" | "otpEnter" | "verified">("emailEnter");
+  const { setAlert } = useAlert();
 
   const getOtpSchema = yup.object().shape({
     email: yup.string().email().required(),
-    // otp: yup.string().required(),
-    // newPassword: yup.string().required().min(8),
-    // confirmPassword: yup.string().required().min(8)
-  })
+  });
+
+  const verifyOtpSchema = yup.object().shape({
+    email: yup.string().email().required(),
+    otp: yup.number().required(),
+  });
+
+  const resetPasswordSchema = yup.object().shape({
+    email: yup.string().email().required(),
+    otp: yup.number().required(),
+    newPassword: yup.string().required().min(8),
+    confirmPassword: yup.string().required().min(8)
+  });
 
   const handleSendOtp = async () => {
     try {
       const data = await getOtpSchema.validate(getValues());
       console.log(data);
-      setStatus("verified")
+      const res = await SendOtp({ ...data }).unwrap();
+      setAlert({
+        severity: "success",
+        text: res?.message ?? "OTP sent successfully",
+      })
+      setStatus("otpEnter");
     }
     catch (err: any) {
-      setError(err.path, { message: err.message });
+      if (err?.name === "ValidationError")
+        setError(err?.path, { message: err.message });
+      else {
+        setAlert({
+          severity: "error",
+          text: err.message ?? "Something went wrong",
+        });
+        console.log(err);
+      }
+    } 
+    // finally {setStatus("otpEnter");}
+  }
+  const handleVerifyOtp = async () => {
+    try {
+      const data = await verifyOtpSchema.validate(getValues());
+      console.log(data);
+      const res = await VerifyOtp({ ...data }).unwrap();
+      setAlert({
+        severity: "success",
+        text: res.message ?? "OTP verified successfully",
+      });
+      setStatus("verified");
+    }
+    catch (err: any) {
+      if (err?.name === "ValidationError")
+        setError(err?.path, { message: err.message });
+      else {
+        setAlert({
+          severity: "error",
+          text: err.message ?? "Something went wrong",
+        });
+        console.log(err);
+      }
+    }
+    // finally {setStatus("verified");}
+  }
+  const handleResetPassword = async (data: any) => {
+    console.log(data);
+    try {
+      const data = await resetPasswordSchema.validate(getValues());
+      console.log(data);
+      const res = await ResetPassword({ ...data }).unwrap();
+      setAlert({
+        severity: "success",
+        text: res.message ?? "Password changed successfully",
+      });
+      // setStatus("verified")
+      setTimeout(() => {
+       redirect("/auth/login");
+      }, 3000);
+    }
+    catch (err: any) {
+      if (err?.name === "ValidationError")
+        setError(err.path, { message: err.message });
+      else {
+        setAlert({
+          severity: "error",
+          text: err.message ?? "Something went wrong",
+        });
+        console.log(err);
+      }
     }
   }
-  const handleResetPassword = (data: any) => {
-    console.log(data);
-  }
+
   return (
     <form onSubmit={handleSubmit(handleResetPassword)}>
       <Box sx={{
@@ -53,7 +147,7 @@ const ForgetPasswordForm = () => {
         width: '100%',
         padding: '1rem'
       }}>
-        {status === "notVerified" &&
+        {status === "emailEnter" &&
           <>
             <TextField
               id="email"
@@ -63,7 +157,7 @@ const ForgetPasswordForm = () => {
               type="email"
               required
               error={errors.email ? true : false}
-              helperText={errors.email ? "Invalid email"  : " "}
+              helperText={errors.email && "Invalid email"}
               // onChange={() => clearErrors("email")}
               {...register("email", {
                 required: true,
@@ -71,6 +165,13 @@ const ForgetPasswordForm = () => {
                 onChange: () => clearErrors("email"),
               })}
             />
+
+            <Link
+              href={"/auth/login"}
+              className="w-full flex text-blue-500 underline justify-end"
+            >
+              Back to login
+            </Link>
             <Button
               onClick={handleSendOtp}
               type="button"
@@ -83,8 +184,7 @@ const ForgetPasswordForm = () => {
           </>
         }
 
-        {status === "verified" &&
-
+        {status === "otpEnter" &&
           <>
             <TextField
               id="otp"
@@ -93,11 +193,32 @@ const ForgetPasswordForm = () => {
               fullWidth
               required
               error={errors.otp ? true : false}
-              helperText={errors.otp ? "Invalid OTP" : " "}
+              helperText={errors.otp && "Invalid OTP"}
               {...register("otp", {
                 required: true,
               })}
             />
+
+            <Link
+              href={"/auth/login"}
+              className="w-full flex text-blue-500 underline justify-end"
+            >
+              Back to login
+            </Link>
+            <Button
+              onClick={handleVerifyOtp}
+              type="button"
+              variant='contained'
+              fullWidth
+              size='large'
+            >
+              Send OTP
+            </Button>
+          </>
+        }
+
+        {status === "verified" &&
+          <>
             <TextField
               id="newPassword"
               label="New Password"
@@ -117,7 +238,7 @@ const ForgetPasswordForm = () => {
                   </InputAdornment>)
               }}
               error={errors.newPassword ? true : false}
-              helperText={errors.newPassword ? "Passwords not same" : " "}
+              helperText={errors.newPassword && "Passwords not same"}
               {...register("newPassword", {
                 required: true,
                 pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/
@@ -142,12 +263,18 @@ const ForgetPasswordForm = () => {
                   </InputAdornment>)
               }}
               error={errors.confirmPassword ? true : false}
-              helperText={errors.confirmPassword ? "Passwords not same" : " "}
+              helperText={errors.confirmPassword && "Passwords not same"}
               {...register("confirmPassword", {
                 required: true,
                 validate: (value) => value === getValues("newPassword")
               })}
             />
+            <Link
+              href={"/auth/login"}
+              className="w-full flex text-blue-500 underline justify-end"
+            >
+              Back to login
+            </Link>
             <Button
               type="submit"
               variant='contained'
@@ -157,7 +284,6 @@ const ForgetPasswordForm = () => {
               Send OTP
             </Button>
           </>
-
         }
       </Box>
     </form>

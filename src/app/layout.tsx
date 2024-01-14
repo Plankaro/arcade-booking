@@ -6,6 +6,7 @@ import AppProvider from "@/store/provider";
 import RotateToLandscapeNotifier from "@/components/specific/Home/RotateToLandscapeNotifier";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { AlertProvider } from "@/components/shared/Alert";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +29,9 @@ export default function RootLayout({
         <ThemeRegistry>
           {" "}
           <AppProvider>
-            {children}
+            <AlertProvider>
+              {children}
+            </AlertProvider>
             <RotateToLandscapeNotifier />
           </AppProvider>
         </ThemeRegistry>

@@ -6,9 +6,10 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Cardwraper from "./Card-wraper";
-import { Button, CircularProgress, TextField, Typography } from "@mui/material";
+import { Button, CircularProgress, IconButton, InputAdornment, TextField, Tooltip, Typography } from "@mui/material";
 import Link from "next/link";
 import { useSignInMutation } from "@/store/api/auth";
+import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import { useRouter } from "next/navigation";
 import { Diversity1 } from "@mui/icons-material";
 import Image from "next/image";
@@ -43,6 +44,8 @@ const Loginform = () => {
       console.log(res);
     });
   };
+
+  const [showPassword, setShowPassword] = React.useState(false);
 
   return (
     // <div className="w-full flex items-center justify-center flex-col">
@@ -87,11 +90,24 @@ const Loginform = () => {
           render={({ field }) => (
             <TextField
               {...field}
-              type="password"
+              type={showPassword ? "text" : "password"}
               label="Password"
               error={!!errors.password}
               helperText={errors.password?.message}
               variant="filled"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Tooltip title="Show Password" arrow>
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => setShowPassword(t => !t)}
+                        edge="end">
+                        {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
+                      </IconButton>
+                    </Tooltip>
+                  </InputAdornment>)
+              }}
             />
           )}
         />

@@ -26,7 +26,7 @@ const Cardwraper: React.FC<CardWraperProps> = ({
           className=""
         />
       </div>
-        <CardHeader />
+        <CardHeader label={headrLabel} />
         <div className="py-4 "> {children}</div>
         {showSocial && (
           <div className="w-full p-3 items-center justify-center">

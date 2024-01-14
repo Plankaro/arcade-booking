@@ -8,15 +8,16 @@ let lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      light: '#4cace6',
+      light: '#257FB5',
       main: '#257FB5',
       dark: '#11405c',
       contrastText: '#fff',
     },
     secondary: {
-      dark: '#69CCCD',
-      main: '#69CCCD',
-      light: '#69CCCD',
+      dark: '#257FB5',
+      main: '#257FB5',
+      light: '#257FB5',
+      // main: '#69CCCD',
       contrastText: '#fff',
     },
     error: {

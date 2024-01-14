@@ -26,6 +26,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useSignOutMutation } from "@/store/api/auth";
 import ArticleIcon from '@mui/icons-material/Article';
 import HistoryIcon from '@mui/icons-material/History';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 interface Links {
   title: string;
@@ -52,6 +53,11 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
         title: "Hostory",
         icon: <HistoryIcon />,
         url: "/history",
+      },
+      {
+        title: 'My Profile',
+        icon: <AccountCircleOutlinedIcon />,
+        url: '/profile',
       },
 
       // {
@@ -153,7 +159,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
             ) : (
               <ListItemButton
                 sx={{
-                  backgroundColor: "#69CCCD",
+                  backgroundColor: "secondary.main",
                   color: "primary.contrastText",
                 }}
               >
