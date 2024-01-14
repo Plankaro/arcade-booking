@@ -74,9 +74,9 @@ const BlockBRoomSelection = ({ floor ,floorData}: { floor: string , floorData: B
 
     return room ? { isBooked: room.isBooked, lock: room.lock } : null;
   };
-     const result = getBookedAndLockValue("3 BHK A")
+     const result = getBookedAndLockValue("2 BHK A")
 
-// console.log(result);
+console.log(result);
 
   return (
     <div className="relative w-full lg:w-[1220px] 2xl:w-[1440px]"
@@ -103,18 +103,7 @@ const BlockBRoomSelection = ({ floor ,floorData}: { floor: string , floorData: B
         viewBox="0 0 3000 1633"
         fill="none">
         {
-          paths.map((path, index) =>getBookedAndLockValue(path?.name)?.isBooked === "confirm" ? (
-            // <path
-            //   onMouseEnter={(e) => handlePathMouseEnter(e, "sold")}
-            //   onMouseLeave={handlePathMouseLeave}
-            //   key={index}
-            //   className={`cursor-not-allowed `}
-            //   d={path.path}
-            //   id={path.id}
-            //   stroke="black"
-            //   fill="red"
-            //   strokeWidth="6"
-            // />
+          paths.map((path, index) =>getBookedAndLockValue(path?.name)?.isBooked === "confirm" &&  getBookedAndLockValue(path?.name)?.lock !== "locked"? (
             <CustomPath
               index={index}
               hoverLable="Booked"

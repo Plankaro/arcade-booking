@@ -8,9 +8,9 @@ let lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      light: '#257FB5',
+      light: '#4cace6',
       main: '#257FB5',
-      dark: '#257FB5',
+      dark: '#11405c',
       contrastText: '#fff',
     },
     secondary: {
@@ -133,72 +133,14 @@ let lightTheme = createTheme({
       size: 'small',
     },
   },
+  MuiTextField: {
+    defaultProps: {
+      variant: 'filled',
+      size: 'small',
+    },
+  },
 });
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#0044eb', // Purple color for primary elements
-      contrastText: '#fff',
-    },
-    secondary: {
-      main: '#ff4081', // Pink color for secondary elements
-      contrastText: '#fff',
-    },
-    text: {
-      primary: '#fff',
-      secondary: '#bbb',
-    },
-    background: {
-      paper: '#333', // Dark background color
-      default: '#222', // Dark default background color
-    },
-  },
-  typography: {
-    fontFamily: 'Poppins, sans-serif',
-    h1: {
-      fontSize: '2.5rem',
-      fontWeight: 700,
-      color: '#673ab7',
-    },
-    h2: {
-      fontSize: '2rem',
-      fontWeight: 600,
-      color: '#673ab7',
-    },
-    h3: {
-      fontSize: '1.5rem',
-      fontWeight: 600,
-      color: '#673ab7',
-    },
-  },
-  spacing: factor => `${0.25 * factor}rem`,
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none',
-        },
-      },
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          background: '#673ab7', // Purple color for app bar
-        },
-      },
-    },
-    MuiDrawer: {
-      styleOverrides: {
-        paper: {
-          background: '#673ab7', // Purple color for drawer background
-        },
-      },
-    },
-    // Customize other components as needed
-  },
-});
 
 const themeWithResponsiveFont = responsiveFontSizes(lightTheme);
 
