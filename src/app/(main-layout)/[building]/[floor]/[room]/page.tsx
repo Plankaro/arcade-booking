@@ -13,7 +13,7 @@ type RoomsType = {
 }[];
 
 const BookingPage = ({ params: { building, floor, room } }: any) => {
-
+  const [imageLoaded, setImageLoaded] = React.useState(false);
   console.log(building, floor, room)
 
   const params = {
@@ -94,14 +94,19 @@ const BookingPage = ({ params: { building, floor, room } }: any) => {
   return (
     <div className="w-full flex items-center justify-center bg-black">
       <div className="w-full h-screen flex flex-wrap items-center  justify-center p-9 overflow-hidden overflow-y-scroll">
-        <div className="  w-[40rem] h-[40rem]">
+        <div className="relative w-[40rem] h-[40rem] flex items-center justify-center">
+          <div
+            className={`absolute w-full h-full flex items-center justify-center ${imageLoaded ? "hidden" : ""}`}
+          >
+            <p className="text-3xl font-bold">Loading...</p>
+          </div>
           <Image
-            // layout="responsive"
             width={500}
             height={400}
             className=" object-cover h-full"
             src={roomImage ? roomImage : ""}
             alt=""
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
         <div className="w-[40rem] h-[30rem] flex items-center">

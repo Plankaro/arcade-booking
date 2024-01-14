@@ -138,7 +138,7 @@ console.log(result);
                 className={pathClassName}
                 onMouseEnter={(e) => handlePathMouseEnter(e, path.name)}
                 stroke="black"
-                fill='black'
+                fill='green'
                 fillOpacity={0.4}
                 strokeWidth="8"
                 onMouseLeave={handlePathMouseLeave}

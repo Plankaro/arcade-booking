@@ -22,7 +22,6 @@ const BlockARoomSelection = ({
 
   const handlePathMouseEnter = (e: MouseEvent, text: string) => {
     const rect = e.currentTarget.getBoundingClientRect();
-
     setTooltip({
       text,
       rect,
@@ -125,17 +124,6 @@ const BlockARoomSelection = ({
 
           {paths.map((path, index) =>
             getBookedAndLockValue(path?.name)?.isBooked === "confirm" ? (
-              // <path
-              //   onMouseEnter={(e) => handlePathMouseEnter(e, "sold")}
-              //   onMouseLeave={handlePathMouseLeave}
-              //   key={index}
-              //   className={`cursor-not-allowed `}
-              //   d={path.path}
-              //   id={path.id}
-              //   stroke="black"
-              //   fill="red"
-              //   strokeWidth="6"
-              // />
               <CustomPath
                 index={index}
                 hoverLable="Booked"

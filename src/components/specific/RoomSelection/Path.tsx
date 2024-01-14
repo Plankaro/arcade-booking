@@ -27,7 +27,7 @@ const CustomPath: React.FC<PathProps> = ({
       d={path.path}
       id={path.id}
       stroke="black"
-      fill="red"
+      fill={hoverLable === "Sold" ? "#00000095" : "red"}
       strokeWidth="6"
     />
   );

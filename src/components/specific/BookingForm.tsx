@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import TextInput from "../shared/common/Input";
 import { useForm } from "react-hook-form";
@@ -14,6 +15,7 @@ import {
 } from "@mui/material";
 import { usePostBookingMutation } from "@/store/api/booking";
 import { useRouter } from "next/navigation";
+import { useAlert } from "../shared/Alert";
 
 interface BookingFormProps {
   room_id: string;
@@ -40,6 +42,7 @@ const BookingForm = ({
   } = useForm({
     resolver: yupResolver(bookingFormSchema),
   });
+  const { setAlert } = useAlert();
 
   const [ApplyForBooking, { isLoading }] = usePostBookingMutation();
 
@@ -57,10 +60,21 @@ const BookingForm = ({
       .then((res: any) => {
         console.log(res);
         handleModelClose();
+
+        // instead of going back we will show thankyou page
         router.back();
+
+        setAlert({
+          severity: "success",
+          text: res?.message ?? "Booking Done Successfully",
+        });
       })
       .catch((err: any) => {
         console.log(err);
+        setAlert({
+          severity: "error",
+          text: err?.message ?? "Booking Failed",
+        });
       });
   };
 
@@ -79,7 +93,7 @@ const BookingForm = ({
 
       <Container maxWidth="sm">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} py={5}>
             <Grid item xs={12}>
               <TextField
                 fullWidth

@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { Diversity1 } from "@mui/icons-material";
 import Image from "next/image";
 import { color } from "framer-motion";
+import { useAlert } from "@/components/shared/Alert";
 
 const Loginform = () => {
   const Router = useRouter();
@@ -29,7 +30,7 @@ const Loginform = () => {
       password: "",
     },
   });
-
+  const { setAlert } = useAlert();
   const [SignIn, { isLoading, isSuccess }] = useSignInMutation();
   useEffect(() => {
     if (isSuccess) {
@@ -40,9 +41,20 @@ const Loginform = () => {
 
   const handleSubmits = async (value: any) => {
     // console.log(value);
-    await SignIn(value).then((res) => {
-      console.log(res);
-    });
+    await SignIn(value).unwrap()
+      .then((res) => {
+        console.log(res);
+        setAlert({
+          severity: "success",
+          text: "Login Successfull",
+        });
+      }).catch((err) => {
+        console.log(err);
+        setAlert({
+          severity: "error",
+          text: "Login Failed",
+        });
+      });
   };
 
   const [showPassword, setShowPassword] = React.useState(false);
