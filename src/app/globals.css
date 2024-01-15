@@ -18,3 +18,25 @@
 * {
   scrollbar-color: transparent transparent;
 }
+
+.loading-spinner circle {
+  fill: transparent;
+  stroke: #fff;
+  stroke-width: 8;
+  /* Adjust the stroke width as needed */
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  /* (2 * PI * radius) - for radius of 76 */
+  animation: dash 1s linear infinite;
+  /* Adjust the animation duration as needed */
+  transform-origin: center;
+}
+@keyframes dash {
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

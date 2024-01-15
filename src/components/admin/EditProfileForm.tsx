@@ -23,17 +23,17 @@ const schema = yup.object().shape({
 });
 
 const EditProfileForm = ({ id, refetch, setIsProfileUpdating, setShowEditProfileModal }: { id: string, refetch: any, setIsProfileUpdating: any, setShowEditProfileModal: any }) => {
-  const { register, handleSubmit, control, watch, formState: { errors } } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
   const { setAlert } = useAlert();
 
   const [UpdateUser, { isLoading, isSuccess, isError }] = useUpdateUserMutation();
   const onSubmit = async (data: any) => {
-    setIsProfileUpdating(true);
-    console.log("-> data", data)
+    // setIsProfileUpdating(true);
+    const filteredData = Object.fromEntries(
+      Object.entries(data).filter(([key, value]) => value !== "")
+    );
     try {
-      const res = await UpdateUser({ ...data, role: "Admin", id }).unwrap();
+      const res = await UpdateUser({ ...filteredData, role: "Admin", id }).unwrap();
       console.log("-> res", res)
       setAlert({
         text: res.message ?? "Profile updated successfully",
@@ -133,14 +133,14 @@ const EditProfileForm = ({ id, refetch, setIsProfileUpdating, setShowEditProfile
           register={register}
           error={errors.lastName}
         />
-        <Input
+        {/* <Input
           id='email'
           name='email'
           label='Email'
           type='email'
           register={register}
           error={errors.email}
-        />
+        /> */}
         <Input
           id='mobileNumber'
           name='mobileNumber'

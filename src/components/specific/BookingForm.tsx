@@ -79,7 +79,7 @@ const BookingForm = ({
   };
 
   return (
-    <div className="max-w-[550px] w-[60vw] bg-white p-6 rounded-md relative">
+    <div className="max-w-[550px] w-[95vw] sm:w-[90vw] md:w-[500px] bg-white p-3 md:p-4 rounded-md relative">
       <IconButton
         sx={{
           position: "absolute",
@@ -90,6 +90,14 @@ const BookingForm = ({
       >
         <CancelIcon sx={{ color: "#FF7E16", fontSize: 30 }} />
       </IconButton>
+
+      <h1 className="text-2xl text-black font-bold text-center">
+        Book Your Apartment
+      </h1>
+
+      <h5 className="text-lg text-black font-normal text-center mb-0">
+        {building} - {floor} - {room}
+      </h5>
 
       <Container maxWidth="sm">
         <form onSubmit={handleSubmit(onSubmit)}>

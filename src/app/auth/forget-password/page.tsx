@@ -4,7 +4,7 @@ import { useAlert } from '@/components/shared/Alert';
 import { useForgetPasswordMutation, useSendOtpMutation, useVerifyOtpMutation } from '@/store/api/auth';
 import { Box, Button, IconButton, InputAdornment, TextField } from '@mui/material';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
@@ -21,6 +21,7 @@ const ForgetPassword = () => {
 export default ForgetPassword
 
 const ForgetPasswordForm = () => {
+  const router = useRouter();
   const [SendOtp,
     {
       data: sendOtpData,
@@ -81,7 +82,7 @@ const ForgetPasswordForm = () => {
         });
         console.log(err);
       }
-    } 
+    }
     // finally {setStatus("otpEnter");}
   }
   const handleVerifyOtp = async () => {
@@ -119,9 +120,7 @@ const ForgetPasswordForm = () => {
         text: res.message ?? "Password changed successfully",
       });
       // setStatus("verified")
-      setTimeout(() => {
-       redirect("/auth/login");
-      }, 3000);
+      router.push("/auth/login");
     }
     catch (err: any) {
       if (err?.name === "ValidationError")
@@ -198,13 +197,6 @@ const ForgetPasswordForm = () => {
                 required: true,
               })}
             />
-
-            <Link
-              href={"/auth/login"}
-              className="w-full flex text-blue-500 underline justify-end"
-            >
-              Back to login
-            </Link>
             <Button
               onClick={handleVerifyOtp}
               type="button"
@@ -269,12 +261,6 @@ const ForgetPasswordForm = () => {
                 validate: (value) => value === getValues("newPassword")
               })}
             />
-            <Link
-              href={"/auth/login"}
-              className="w-full flex text-blue-500 underline justify-end"
-            >
-              Back to login
-            </Link>
             <Button
               type="submit"
               variant='contained'

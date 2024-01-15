@@ -53,9 +53,9 @@ export const authApi = createApi({
     }),
     forgetPassword: builder.mutation<any, { email: string, newPassword: string }>({
       query: (data) => ({
-        url: `/user/forget-password`,
-        method: "POST",
-        body: { ...data },
+        url: `/user/forgotpassword`,
+        method: "PATCH",
+        body: { email: data.email, newPassword: data.newPassword },
       }),
       // invalidatesTags: ["Session"],
     }),

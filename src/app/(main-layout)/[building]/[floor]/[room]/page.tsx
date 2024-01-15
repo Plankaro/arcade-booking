@@ -1,5 +1,6 @@
 "use client"
 import RoomDetails from "@/components/RoomDetails";
+import BasicLoading from "@/components/shared/BasicLoading";
 import VLine from "@/components/shared/Vline";
 import BookingForm from "@/components/specific/BookingForm";
 import { useGetAllPropertyDetailsQuery } from "@/store/api/booking";
@@ -95,17 +96,14 @@ const BookingPage = ({ params: { building, floor, room } }: any) => {
     <div className="w-full flex items-center justify-center bg-black">
       <div className="w-full h-screen flex flex-wrap items-center  justify-center p-9 overflow-hidden overflow-y-scroll">
         <div className="relative w-[40rem] h-[40rem] flex items-center justify-center">
-          <div
-            className={`absolute w-full h-full flex items-center justify-center ${imageLoaded ? "hidden" : ""}`}
-          >
-            <p className="text-3xl font-bold">Loading...</p>
-          </div>
+          {!imageLoaded && <BasicLoading />}
           <Image
             width={500}
             height={400}
             className=" object-cover h-full"
             src={roomImage ? roomImage : ""}
             alt=""
+            style={{ opacity: imageLoaded ? 1 : 0 }}
             onLoad={() => setImageLoaded(true)}
           />
         </div>
