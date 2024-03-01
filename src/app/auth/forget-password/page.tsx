@@ -204,7 +204,7 @@ const ForgetPasswordForm = () => {
               fullWidth
               size='large'
             >
-              Send OTP
+              Verify OTP
             </Button>
           </>
         }
