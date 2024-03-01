@@ -12,11 +12,11 @@ const MainBuildingOverlay = () => {
     }
   }, [imageRef.current]);
 
-  const largerScreensStyles = {
-    '@media screen and (max-height: 900px)': {
-      maxWidth: '1220px',
-    },
-  }
+  // const largerScreensStyles = {
+  //   '@media screen and (max-height: 900px)': {
+  //     maxWidth: '1220px',
+  //   },
+  // }
 
 
   return (
@@ -28,7 +28,7 @@ const MainBuildingOverlay = () => {
     >
       <img
         ref={imageRef}
-        src="/Images/hero/Hero-small.jpg"
+        src="/Images/hero/ren2-min.jpg"
         alt="Your Image"
         className="z-10 block w-full h-auto object-cover"
       // className="z-10 block w-full h-auto object-right-bottom"
@@ -38,7 +38,7 @@ const MainBuildingOverlay = () => {
         viewBox="0 0 4351 2997"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ width: '120%', height: '115%', top: '-7%', left: '-10%' }}
+        style={{ width: '109%', height: '112%', top: '-5.5%', left: '-4.2%' }}
       >
         <Link href="/?typeSelection=true" >
           <path

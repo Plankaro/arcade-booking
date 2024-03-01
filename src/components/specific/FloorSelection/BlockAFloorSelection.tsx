@@ -10,56 +10,56 @@ import "../../../app/style/homestyle.css"
 const BlockAFloorSelectionSvg = [
   {
     path: "M836.5 270L292.5 307V368.5L836.5 334L1751 357V292.5L836.5 270Z",
-    floor: "10th floor",
+    floor: "11th floor",
     id: "floor-10",
   },
   {
     path: "M834 358.5L291 390V444L834 414L1749.5 431.5V382.5L834 358.5Z",
-    floor: "9th floor",
+    floor: "10th floor",
     id: "floor-9",
   },
   {
     path: "M836.5 437L292.5 461.5V518.5L836.5 495.5L1749.5 510V454L836.5 437Z",
-    floor: "8th floor",
+    floor: "9th floor",
   },
   {
     path: "M835.5 517L296.5 541.5V594L835.5 575.5L1748 585.5V534L835.5 517Z",
-    floor: "7th floor",
+    floor: "8th floor",
     id: "floor-7"
   },
   {
     path: "M841 597L291 615.5V670L841 651.5L1746.5 660V605.5L841 597Z",
-    floor: "6th floor",
+    floor: "7th floor",
     id: "floor-6"
   },
   {
     path: "M834 678.5L285.5 688.5V740H834H1748V688.5L834 678.5Z",
-    floor: "5th floor",
+    floor: "6th floor",
     id: "floor-5"
   },
   {
     path: "M835.5 755.5L288 764V817H835.5H1756.5V764L835.5 755.5Z",
-    floor: "4th floor",
+    floor: "5th floor",
     id: "floor-4"
   },
   {
     path: "M718 835.5H292.5V890L836.5 900L1755.5 890V835.5H718Z",
-    floor: "3rd floor",
+    floor: "4th floor",
     id: "floor-3"
   },
   {
     path: "M714 914H288V967L841 975.5L1755.5 967V914H714Z",
-    floor: "2nd floor",
+    floor: "3rd floor",
     id: "floor-2"
   },
   {
     path: "M862 1002.5L288 988.5V1045.5L842 1058L1315.5 1045.5H1763.5V988.5H1315.5L862 1002.5Z",
-    floor: "1st floor",
+    floor: "2nd floor",
     id: "floor-1"
   },
   {
     path: "M715.5 1079.5L289.5 1064V1118L714 1134.5L1308 1127L1765 1118V1064L1308 1079.5H715.5Z",
-    floor: "Ground floor",
+    floor: "1st floor",
     id: "floor-0"
   },
 ]
@@ -99,9 +99,9 @@ const BlockAFloorSelection = () => {
 
   return (
     <div className={`relative w-full room`}
-      // style={{
-      //   maxWidth: `${window.innerHeight * imageNaturalAspectRatio ?? 1000}px`,
-      // }}
+    // style={{
+    //   maxWidth: `${window.innerHeight * imageNaturalAspectRatio ?? 1000}px`,
+    // }}
     >
       <Tooltip {...tooltip} />
       <Backdrop
