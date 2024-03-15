@@ -1,9 +1,14 @@
 "use client";
 import Link from 'next/link';
 import React, { use, useEffect } from 'react'
-import "../../../app/style/homestyle.css"
+import "@/app/style/homestyle.css"
 
-const MainBuildingOverlay = () => {
+interface MainBuildingOverlayProps {
+  typeSelection: boolean;
+  setTypeSelection: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const MainBuildingOverlay = (props: MainBuildingOverlayProps) => {
   const imageRef = React.useRef<HTMLImageElement>(null);
   const [imageNaturalAspectRatio, setImageNaturalAspectRatio] = React.useState<number>(0);
   useEffect(() => {
@@ -12,26 +17,13 @@ const MainBuildingOverlay = () => {
     }
   }, [imageRef.current]);
 
-  // const largerScreensStyles = {
-  //   '@media screen and (max-height: 900px)': {
-  //     maxWidth: '1220px',
-  //   },
-  // }
-
-
   return (
-    <div className={`relative w-full home`}
-      // style={{
-      //   ...largerScreensStyles['@media screen and (max-height: 900px)'],
-      // }}
-
-    >
+    <div className={`relative w-full home`}>
       <img
         ref={imageRef}
         src="/Images/hero/ren2-min.jpg"
         alt="Your Image"
         className="z-10 block w-full h-auto object-cover"
-      // className="z-10 block w-full h-auto object-right-bottom"
       />
       <svg
         className='absolute'
@@ -42,6 +34,7 @@ const MainBuildingOverlay = () => {
       >
         <Link href="/?typeSelection=true" >
           <path
+            onClick={() => props.setTypeSelection(true)}
             className=' opacity-0 hover:opacity-50 transition-opacity duration-300 w-full h-full cursor-pointer'
             d="M1059.5 542H852V617H817V682H702L712 974.5L519.5 999.5L542 1579.5L619.5 1632L774.5 1599.5L887 1697L1344.5 1827L1697 1894.5L2222 1674.5V724.5H2159.5L2142 672V594.5H1949.5L1652 494.5L1574.5 557L1427 479.5L1059.5 569.5V542Z" fill="black" fillOpacity="0.5" stroke="white" strokeWidth="10" />
         </Link>

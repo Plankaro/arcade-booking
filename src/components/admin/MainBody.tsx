@@ -71,12 +71,8 @@ const MainBody: React.FC<MainBodyProps> = ({
     setBackdropOpen(true);
     const data = {
       isBooked: showModel.model,
-      bookingId: isPropertyTable
-        ? showModel?.value?.floorId
-        : showModel?.value?.id,
-      roomId: isPropertyTable
-        ? showModel?.value?.roomId
-        : showModel?.value?.rooms?.[0]?.id,
+      bookingId: isPropertyTable ? showModel?.value?.floorId : showModel?.value?.id,
+      roomId: isPropertyTable ? showModel?.value?.roomId : showModel?.value?.rooms?.[0]?.id,
     };
     console.log(data);
     await ConfirmBooking(data)

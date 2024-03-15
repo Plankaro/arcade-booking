@@ -2,7 +2,6 @@ import Sidebar from "@/components/admin/Sidebar";
 import { redirect } from "next/navigation";
 import React from "react";
 import { cookies } from "next/headers";
-import Login from "../auth/login/page";
 
 const isAuthenticated = async () => {
   const token = cookies().get("token");

@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import SharedButton from "./shared/Button";
 import BookingForm from "./specific/BookingForm";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface RoomDetailsProps {
   building: string;
@@ -12,6 +14,7 @@ interface RoomDetailsProps {
 
 const RoomDetails: FC<RoomDetailsProps> = ({ building, floor, room, data }) => {
   const [open, setOpen] = React.useState(false);
+  const router = useRouter();
   const handleModelClose = () => {
     setOpen(false);
   };
@@ -36,23 +39,25 @@ const RoomDetails: FC<RoomDetailsProps> = ({ building, floor, room, data }) => {
           />
         </Backdrop>
       }
-     <div className="w-full flex items-start justify-center flex-col">
+      <div className="w-full flex items-start justify-center flex-col">
         <p className=" text-lg mb-2">
           {/* <span className="font-semibold text-xl">Title : </span> */}
           {building} / {floor} / {room}
         </p>
-        <p>
+        {/* <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt minima
           quibusdam nesciunt explicabo, quam quas molestiae dolore voluptas fuga
           doloribus. Quo non tenetur laboriosam veniam error labore culpa optio
           rerum!
-        </p>
-     </div>
+        </p> */}
+      </div>
       <div className="flex gap-4 w-full">
         <SharedButton title="Book Now" onClick={handleOpen} />
-        <SharedButton title="VR Tour" />
-      </div>
+        <SharedButton title="VR Tour" onClick={() => {
+          router.push("https://hometour.3ddemo.online/");
+        }} />
     </div>
+    </div >
   );
 };
 
