@@ -112,7 +112,7 @@ console.log(result);
               handlePathMouseLeave={handlePathMouseLeave}
             />
           ) :
-            getBookedAndLockValue(path?.name)?.isBooked === "notConfirmed" ? (
+            getBookedAndLockValue(path?.id)?.isBooked === "notConfirmed" ? (
 
               <CustomPath
                 index={index}
@@ -121,7 +121,7 @@ console.log(result);
                 handlePathMouseEnter={handlePathMouseEnter}
                 handlePathMouseLeave={handlePathMouseLeave}
               />
-            ) : getBookedAndLockValue(path?.name)?.lock === "locked" ? (
+            ) : getBookedAndLockValue(path?.id)?.lock === "locked" ? (
               <CustomPath
                 index={index}
                 hoverLable="Sold"

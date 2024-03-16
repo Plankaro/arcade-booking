@@ -11,6 +11,7 @@ const RoomSelectionPage = ({ params: { building, floor } }: any) => {
     return `?type=${building}&floor=${floor}`; // Construct the query string
     }, []);
   const { data, refetch } = useGetAllPropertyDetailsQuery(params)
+  console.log("ac->", data)
 
   const searchParams = useSearchParams();
   useEffect(() => {
