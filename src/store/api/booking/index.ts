@@ -6,13 +6,8 @@ export const bookingApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: `/api/v1/booking` }),
     endpoints: (builder) => ({
         //api endpoints
-        getAllPropertyDetails: builder.query<Building[], any>({
-            query: (data) => ({
-                url: ``,
-                method: "GET",
-                params: data
-
-            }),
+        getAllPropertyDetails: builder.query<Building[], string>({
+            query: (params) => params,
         }),
         postBooking: builder.mutation<any, any>({
             query: (data) => ({
@@ -24,4 +19,4 @@ export const bookingApi = createApi({
     }),
 });
 
-export const { useGetAllPropertyDetailsQuery,usePostBookingMutation } = bookingApi;
+export const { useGetAllPropertyDetailsQuery, usePostBookingMutation } = bookingApi;

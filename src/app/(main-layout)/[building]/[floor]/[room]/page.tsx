@@ -17,11 +17,17 @@ const BookingPage = ({ params: { building, floor, room } }: any) => {
   const [imageLoaded, setImageLoaded] = React.useState(false);
   console.log(building, floor, room)
 
-  const params = {
-    type: building,
-    floor,
-    room
-  }
+  // const params = {
+  //   type: building,
+  //   floor,
+  //   room
+  // }
+    const params = React.useMemo(() => {
+    return `?type=${building}&floor=${floor}&room=${room}`; // Construct the query string
+    }, []);
+  console.log(params)
+
+
   const { data } = useGetAllPropertyDetailsQuery(params)
   console.log("ac->", data)
 

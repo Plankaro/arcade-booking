@@ -7,10 +7,9 @@ import React, { useEffect } from "react";
 
 const RoomSelectionPage = ({ params: { building, floor } }: any) => {
   // console.log(floor, building)
-  const params = {
-    type: building,
-    floor
-  }
+  const params = React.useMemo(() => {
+    return `?type=${building}&floor=${floor}`; // Construct the query string
+    }, []);
   const { data, refetch } = useGetAllPropertyDetailsQuery(params)
 
   const searchParams = useSearchParams();

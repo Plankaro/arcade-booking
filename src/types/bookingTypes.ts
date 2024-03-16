@@ -27,11 +27,9 @@ export interface Booking {
     email: string;
     firstName: string;
     lastName: string
-    floor?: string;
-    room?: string;
+    room: Room;
     roomId?: string;
     floorId?: string;
-    floors: Floor[];
-    rooms:Room[]
+    floor: Floor
 }
 

@@ -47,8 +47,8 @@ const BookingForm = ({
 
   const [ApplyForBooking, { isLoading }] = usePostBookingMutation();
 
-  // console.log(Datas?.[0]?.floors?.[0]?.id);
-  // console.log(Datas?.[0]?.floors?.[0]?.rooms?.[0]?.id);
+  console.log(Datas);
+  console.log(Datas?.[0]?.floors?.[0]?.rooms?.[0]?.id);
   const onSubmit = async (data: any) => {
     const Data = {
       type: Datas?.[0]?.type,

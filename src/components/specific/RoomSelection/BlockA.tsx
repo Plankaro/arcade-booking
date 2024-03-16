@@ -83,13 +83,29 @@ const BlockARoomSelection = ({
     },
   ];
 
-  const getBookedAndLockValue = (name: string) => {
-    const room = floorData
-      ?.flatMap((property) => property.floors.flatMap((floor) => floor.rooms))
-      .find((room) => room.name === name);
+  const getBookedAndLockValue = (roomName: string) => {
+    // Iterate over the properties
+    if (!floorData) {
+      return null;
 
-    return room ? { isBooked: room.isBooked, lock: room.lock } : null;
+    }
+    for (const property of floorData) {
+      // Iterate over the floors of each property
+      for (const floor of property.floors) {
+        // Find the room with the specified name
+        const room = floor.rooms.find(room => room.name === roomName);
+        // If the room is found, return its isBooked and lock values
+        if (room) {
+          return { isBooked: room.isBooked, lock: room.lock };
+        }
+      }
+    }
+    // If room is not found, return null
+    return null;
   };
+  // console.log(getBookedAndLockValue("1_BHK-H"))
+  // console.log(floorData)
+  // console.log(paths)
 
   return (
     <div className="w-screen flex items-center justify-center  lg:w-[1220px] 2xl:w-[1440px] ">
@@ -123,7 +139,7 @@ const BlockARoomSelection = ({
         >
 
           {paths.map((path, index) =>
-            getBookedAndLockValue(path?.name)?.isBooked === "confirm" ? (
+            getBookedAndLockValue(path?.id)?.isBooked === "confirm" ? (
               <CustomPath
                 index={index}
                 hoverLable="Booked"
@@ -132,7 +148,7 @@ const BlockARoomSelection = ({
                 handlePathMouseLeave={handlePathMouseLeave}
               />
             ) :
-              getBookedAndLockValue(path?.name)?.isBooked === "notConfirmed" ? (
+              getBookedAndLockValue(path?.id)?.isBooked === "notConfirmed" ? (
 
                 <CustomPath
                   index={index}
@@ -141,7 +157,7 @@ const BlockARoomSelection = ({
                   handlePathMouseEnter={handlePathMouseEnter}
                   handlePathMouseLeave={handlePathMouseLeave}
                 />
-              ) : getBookedAndLockValue(path?.name)?.lock === "locked" ? (
+              ) : getBookedAndLockValue(path?.id)?.lock === "locked" ? (
                 <CustomPath
                   index={index}
                   hoverLable="Sold"
@@ -150,7 +166,7 @@ const BlockARoomSelection = ({
                   handlePathMouseLeave={handlePathMouseLeave}
                 />
               ) : (
-                <Link href={`${floor}/${path.id}`} key={index} onClick={()=>setLoading(true)}>
+                <Link href={`${floor}/${path.id}`} key={index} onClick={() => setLoading(true)}>
                   <path
                     key={index}
                     onMouseEnter={(e) => handlePathMouseEnter(e, path.name)}

@@ -10,7 +10,6 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import DeleteIcon from "@mui/icons-material/Delete";
 import BlockIcon from "@mui/icons-material/Block";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import { useGetAllBookingQuery } from "@/store/api/admin";
 import { Booking, Floor } from "@/types/bookingTypes";
 import { usePathname } from "next/navigation";
 import CachedIcon from "@mui/icons-material/Cached";
@@ -51,15 +50,15 @@ const BookingTable: FC<TableProps> = ({
         header: "Floor",
         size: 150,
         Cell: ({ row }) => {
-          console.log(row?.original?.floors?.[0]);
-          return (<div>{row?.original?.floors?.[0]?.name} </div>)
+          console.log(row?.original);
+          return (<div>{row?.original?.floor?.name} </div>)
         },
       },
       {
         accessorKey: "room.name",
         header: "Room",
         size: 150,
-        Cell: ({ row }) => <div> {`${row?.original?.rooms?.[0]?.name}`} </div>,
+        Cell: ({ row }) => <div> {`${row?.original?.room?.name}`} </div>,
       },
       {
         accessorKey: "email",
