@@ -50,7 +50,10 @@ const BookingTable: FC<TableProps> = ({
         accessorKey: "floor.name",
         header: "Floor",
         size: 150,
-        Cell: ({ row }) => <div> {`${row?.original?.floors?.[0]?.name}`} </div>,
+        Cell: ({ row }) => {
+          console.log(row?.original?.floors?.[0]);
+          return (<div>{row?.original?.floors?.[0]?.name} </div>)
+        },
       },
       {
         accessorKey: "room.name",
@@ -207,7 +210,7 @@ const BookingTable: FC<TableProps> = ({
           </Tooltip>
         </Box>
       )}
-      <MaterialReactTable table={table}  />
+      <MaterialReactTable table={table} />
     </div>
   );
 };

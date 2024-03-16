@@ -41,7 +41,7 @@ const MainBody: React.FC<MainBodyProps> = ({
 
   const { data: AllBookings, refetch } = useGetAllBookingQuery();
 
-  // console.log(AllBookings)
+  console.log(AllBookings)
 
   const [ConfirmBooking, { isLoading }] = useConfirmBookingMutation();
   const [LockBooking, { isLoading: loading }] = useLockBookingMutation();

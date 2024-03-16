@@ -14,7 +14,7 @@ import {
   TextField,
 } from "@mui/material";
 import { usePostBookingMutation } from "@/store/api/booking";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAlert } from "../shared/Alert";
 
 interface BookingFormProps {
@@ -35,6 +35,7 @@ const BookingForm = ({
   data: Datas,
 }: BookingFormProps) => {
   const router = useRouter();
+  const pathname = usePathname();
   const {
     register,
     handleSubmit,
@@ -62,7 +63,10 @@ const BookingForm = ({
         handleModelClose();
 
         // instead of going back we will show thankyou page
-        router.back();
+        // router.back();
+        const url = pathname.split("/").slice(0, -1).join("/");
+        console.log("🚀 ~ .then ~ url:", url)
+        router.push(url + "?booked=true");
 
         setAlert({
           severity: "success",

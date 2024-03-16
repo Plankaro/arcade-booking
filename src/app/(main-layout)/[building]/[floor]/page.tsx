@@ -2,7 +2,8 @@
 import BlockARoomSelection from "@/components/specific/RoomSelection/BlockA";
 import BlockBRoomSelection from "@/components/specific/RoomSelection/BlockB";
 import { useGetAllPropertyDetailsQuery } from "@/store/api/booking";
-import React from "react";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect } from "react";
 
 const RoomSelectionPage = ({ params: { building, floor } }: any) => {
   // console.log(floor, building)
@@ -10,7 +11,14 @@ const RoomSelectionPage = ({ params: { building, floor } }: any) => {
     type: building,
     floor
   }
-  const { data } = useGetAllPropertyDetailsQuery(params)
+  const { data, refetch } = useGetAllPropertyDetailsQuery(params)
+
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    if (searchParams.get("booked")) {
+      refetch();
+    }
+  }, [searchParams]);
 
   // console.log(data)
 
